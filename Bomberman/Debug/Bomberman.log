@@ -1,2 +1,4 @@
-﻿  LinkedList.cpp
-LINK : fatal error LNK1561: entry point must be defined
+﻿  main.cpp
+  Maze.cpp
+  Bomberman.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman\Debug\Bomberman.exe
+  Bomberman.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman\Debug\Bomberman.pdb (Partial PDB)
