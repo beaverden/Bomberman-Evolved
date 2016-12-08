@@ -19,6 +19,11 @@ public:
 	T pop() {
 		return this->remove(0);
 	}
+
+	T front()
+	{
+		return this->get(0);
+	}
 };
 
 

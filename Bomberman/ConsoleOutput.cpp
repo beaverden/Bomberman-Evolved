@@ -67,3 +67,8 @@ void ConsoleOutput::setChar(int x, int y, char data, unsigned short color)
 	printf("%c", data);
 }
 
+
+unsigned short ConsoleOutput::getColor(unsigned short color, int brightness, int background)
+{
+	return (color + (8 * brightness)) + 16 * background;
+}

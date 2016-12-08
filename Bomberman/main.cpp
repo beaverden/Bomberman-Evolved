@@ -10,6 +10,7 @@
 #include "Stack.h"
 #include <windows.h>
 #include "ConsoleOutput.h"
+#include "Game.h"
 //#include <d2d1.h>
 //#pragma comment(lib, "d2d1")
 
@@ -30,53 +31,36 @@ void SetColor(int ForgC)
 int main()
 {
 
-	int height = 17,
-		width = 51;
-	Maze maze(height, width);
-	char board[Maze::MAX_MAZE_HEIGHT][Maze::MAX_MAZE_WIDTH];
-	maze.generateMaze(board);
-	Stack <Maze::cell> st;
-
-	
-	for (int i = 0; i < height; i++)
-	{
-		for (int j = 0; j < width; j++)
-		{
-			char c;
-			unsigned short color;
-			switch (board[i][j])
-			{
-			case -1: { c = '@'; color = 7; } break;
-			case 0: { c = ' '; color = 0; } break;
-			case 1: { c = '+';  color = 4; } break;
-			}
-			ConsoleOutput::printChar(c, color);
-		}
-		printf("\n");
-	}
+	Game game;
+	game.initLevel(17, 45);
+	game.printBoard();
+	//ConsoleOutput::setChar(5, 10, '@', 4);
 	while (true)
 	{
-		int c = _getch();
-		if (c == KEY_UP)
+		int key = 0;
+		key = _getch();
+
+		if (key == KEY_UP)
 		{
-			ConsoleOutput::setCursorAt(0, 0);
-			for (int i = 0; i < height; i++)
-			{
-				for (int j = 0; j < width; j++)
-				{
-					char c;
-					unsigned short color;
-					switch (board[i][j])
-					{
-					case -1: { c = '@'; color = 7; } break;
-					case 0: { c = ' '; color = 0; } break;
-					case 1: { c = '+';  color = 4; } break;
-					}
-					ConsoleOutput::printChar(c, color);
-				}
-				printf("\n");
-			}
+			game.movePlayer(-1, 0);
 		}
+		else if (key == KEY_DOWN)
+		{
+			game.movePlayer(1, 0);
+		}
+		else if (key == KEY_RIGHT)
+		{
+			game.movePlayer(0, 1);
+		}
+		else if (key == KEY_LEFT)
+		{
+			game.movePlayer(0, -1);
+		}
+		else
+		{
+			continue;
+		}
+		game.printBoard();
 	}
 	_getch();
 	
@@ -115,31 +99,7 @@ int main()
 	*/
 
 	/*
-	while (0)
-	{
-	int key = 0;
-	key = _getch();
-
-	if (key == KEY_UP)
-	{
-	player.move(-1, 0);
-	}
-	else if (key == KEY_DOWN)
-	{
-	player.move(1, 0);
-	}
-	else if (key == KEY_RIGHT)
-	{
-	player.move(0, 1);
-	}
-	else if (key == KEY_LEFT)
-	{
-	player.move(0, -1);
-	}
-	else
-	{
-	continue;
-	}
+	
 
 	system("cls");
 

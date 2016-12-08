@@ -112,18 +112,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleOutput.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Maze.h" />
+    <ClInclude Include="Pair.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleOutput.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Maze.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
