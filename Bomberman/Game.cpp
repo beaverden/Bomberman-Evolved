@@ -18,6 +18,7 @@ void Game::initLevel(int height, int width)
 	this->width = width;
 	Maze initMaze(height, width);
 	initMaze.generateMaze(this->board);
+	initMaze.randomizedGaps(this->board, -1);
 	this->board[1][1] = 1; //Player
 }
 
@@ -111,32 +112,62 @@ void Game::setPlayerPath()
 		playerY = this->player.getPosY();
 
 	Maze maze(this->height, this->width);
-	Stack <Maze::cell> path = maze.calculatePath(this->board, { playerY, playerX }, { this->height - 2, this->width - 2 });
 
-	path.iterator();
-	while (!path.isNull())
+	this->resetPath();
+
+	this->playerPath = maze.calculatePath(this->board, { playerY, playerX }, { this->height - 2, this->width - 2 });
+
+
+	this->playerPath.iterator();
+	while (!this->playerPath.isNull())
 	{
-		int y = path.curr().y,
-			x = path.curr().x;
-		if (board[y][x] != 2)
+		int y = this->playerPath.curr().y,
+			x = this->playerPath.curr().x;
+
+		if (this->setCell(y, x, 2))
 		{
 			this->updateCells.push(Pair<int, int>(y, x));
 		}
-		this->setCell(y, x, 2);
 		
-		path.next();
+		this->playerPath.next();
 	}
 }
 
-void Game::setCell(int y, int x, char newData)
+void Game::resetPath()
+{
+	this->playerPath.iterator();
+	while (!this->playerPath.isNull())
+	{
+		int y = this->playerPath.curr().y,
+			x = this->playerPath.curr().x;
+
+		if (this->board[y][x] != 1) 
+		//Don't reset player cell
+		{
+			if (this->setCell(y, x, 0))
+			{
+				this->updateCells.push(Pair<int, int>(y, x));
+			}
+		}
+		
+		
+		this->playerPath.next();
+	}
+}
+
+bool Game::setCell(int y, int x, char newData)
 {
 	char curr = this->board[y][x];
 	bool allow = false;
 
+	if (curr == newData)
+	{
+		return false;
+	}
+
 	if (curr == 0)
 	{
-		allow = true;
-		
+		allow = true;	
 	}
 	else if (curr == 1)
 	{
@@ -152,5 +183,7 @@ void Game::setCell(int y, int x, char newData)
 	if (allow)
 	{
 		this->board[y][x] = newData;
+		return true;
 	}
+	return false;
 }

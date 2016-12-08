@@ -1,4 +1,4 @@
 ﻿  Game.cpp
-c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\game.cpp(38): warning C4244: 'initializing': conversion from 'unsigned short' to 'char', possible loss of data
-  Bomberman.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman\Debug\Bomberman.exe
-  Bomberman.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman\Debug\Bomberman.pdb (Partial PDB)
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\game.cpp(39): warning C4244: 'initializing': conversion from 'unsigned short' to 'char', possible loss of data
+  Bomberman.vcxproj -> C:\Users\Denis\Documents\Visual Studio 2015\Projects\Bomberman\Debug\Bomberman.exe
+  Bomberman.vcxproj -> C:\Users\Denis\Documents\Visual Studio 2015\Projects\Bomberman\Debug\Bomberman.pdb (Partial PDB)

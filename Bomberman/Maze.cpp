@@ -5,7 +5,7 @@
 #include "Queue.h"
 #include "LinkedList.h"
 #include <limits.h>
-
+#include "Pair.h"
 
 #define MAX_HEIGHT Maze::MAX_MAZE_HEIGHT
 #define MAX_WIDTH Maze::MAX_MAZE_WIDTH
@@ -184,6 +184,39 @@ Stack <Maze::cell> Maze::reconstructPath(cell start, cell finish, short minDista
 	return reconstructedPath;
 }
 
+
+void Maze::randomizedGaps(char maze[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH], int count)
+{
+	Pair<int, int> walls[MAX_MAZE_HEIGHT*MAX_MAZE_WIDTH];
+	int wallsSize = 0;
+
+	for (int i = 1; i < this->mazeHeight - 1; i++)
+	{
+		for (int j = 1; j < this->mazeWidth - 1; j++)
+		{
+			if (maze[i][j] == -1)
+			{
+				walls[wallsSize++] = Pair<int, int>(i, j);
+			}
+		}
+	}
+	//Take down only 7% of the walls if the count is not specified
+
+	if (count == -1) count = (int)((0.07)*wallsSize);
+	while (count--)
+	{
+		int randomPosition = rand() % wallsSize;
+		Pair<int, int> randomWall = walls[randomPosition];
+		while (maze[randomWall.first()][randomWall.second()] != -1)
+		{
+			randomPosition = rand() % wallsSize;
+			randomWall = walls[randomPosition];
+		}
+
+		maze[randomWall.first()][randomWall.second()] = 0;
+
+	}
+}
 
 
 /* CELL STRUCT IMPLEMENTATION */

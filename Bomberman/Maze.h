@@ -52,7 +52,7 @@ public:
 
 	Stack<Maze::cell> calculatePath(char[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH], cell, cell);
 
-
+	void randomizedGaps(char[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH], int);
 
 private:
 	Stack <cell> reconstructPath(cell, cell, short[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH]);

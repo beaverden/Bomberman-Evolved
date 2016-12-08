@@ -25,7 +25,7 @@ public:
 	void movePlayer(int, int);
 	void setPlayerPath();
 
-	void setCell(int, int, char);
+	bool setCell(int, int, char);
 
 private:	
 	int height;
@@ -34,7 +34,10 @@ private:
 	char board[Maze::MAX_MAZE_HEIGHT][Maze::MAX_MAZE_WIDTH];
 	char previousBoard[Maze::MAX_MAZE_HEIGHT][Maze::MAX_MAZE_WIDTH];
 
+
 	Player player;
+	Stack <Maze::cell> playerPath;
+	void resetPath();
 
 	bool canMove(Player, int, int);
 
