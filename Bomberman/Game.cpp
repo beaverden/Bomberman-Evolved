@@ -1,10 +1,18 @@
 #include "Game.h"
 #include "ConsoleOutput.h"
 #include "Pair.h"
+#include <random>
+#include <time.h>
+
+#define FPS 60
 
 Game::Game()
 {
 	this->printedForFirstTime = false;
+	srand(time(0));
+	this->graphics.init(620, 620);
+	this->initLevel(31, 31);
+	
 }
 
 
@@ -17,62 +25,99 @@ void Game::initLevel(int height, int width)
 	this->height = height;
 	this->width = width;
 	Maze initMaze(height, width);
-	initMaze.generateMaze(this->board);
-	initMaze.randomizedGaps(this->board, -1);
+	initMaze.generateMazeRandom(this->board);
 	this->board[1][1] = 1; //Player
 }
 
 void Game::printBoard()
 {
-	this->setPlayerPath();
-
+	
 	if (!this->printedForFirstTime)
 	{
-		ConsoleOutput::cls();
-		ConsoleOutput::setCursorAt(0, 0);
-		this->printedForFirstTime = true;
+		graphics.reset(255, 255, 255);
+		SDL_Rect * rect = new SDL_Rect;
 		for (int i = 0; i < this->height; i++)
 		{
 			for (int j = 0; j < this->width; j++)
 			{
-				char charToPrint = this->getCharAt(i, j);
-				char color = this->getColorAt(i, j);
-				ConsoleOutput::setChar(j, i, charToPrint, color);
+				rect->x = j * 20;
+				rect->y = i * 20;
+				rect->w = 20;
+				rect->h = 20;
+				graphics.fillRect(rect, this->getColorAt(i, j));
 			}
 		}
-	}
-	else
-	{
-		while (!updateCells.empty())
+		if (rect)
 		{
-			int y = this->updateCells.front().first();
-			int x = this->updateCells.front().second();
-			ConsoleOutput::setChar(x, y, this->getCharAt(y, x), this->getColorAt(y, x));
-			this->updateCells.pop();
+			delete rect;
+		}	
+		graphics.update();
+	}
+}
+
+Uint32 Game::getColorAt(int y, int x)
+{
+	switch (this->board[y][x])
+	{
+	case -1: return graphics.getColor(0, 0, 0); break;
+	case -2: return graphics.getColor(0, 50, 50); break;
+	case 2: return graphics.getColor(0, 0, 0); break;
+	case 1: return graphics.getColor(255, 0, 0); break;
+	case 0: return graphics.getColor(255, 255, 255); break;
+	default: return graphics.getColor(255, 255, 255);
+	}
+}
+
+void Game::gameLoop()
+{
+	SDL_Event event;
+	Uint32 starting_tick;
+	bool running = true;
+
+	while (running)
+	{
+		starting_tick = SDL_GetTicks();
+
+		while (SDL_PollEvent(&event))
+		{
+			//printf("%d\n", event.type);
+			if (event.type == SDL_QUIT)
+			{
+				running = false;
+				break;
+			}
+			else if (event.type == SDL_KEYDOWN)
+			{
+				if (event.key.keysym.sym == SDLK_UP)
+				{
+					this->movePlayer(-1, 0);
+				}
+				else if (event.key.keysym.sym == SDLK_DOWN)
+				{
+					this->movePlayer(1, 0);
+				}
+				else if (event.key.keysym.sym == SDLK_RIGHT)
+				{
+					this->movePlayer(0, 1);
+				}
+				else if (event.key.keysym.sym == SDLK_LEFT)
+				{
+					this->movePlayer(0, -1);
+				}
+			}
+			
 		}
+		this->printBoard();
+		
+		this->capFPS(starting_tick);
 	}
 }
 
-char Game::getCharAt(int y, int x)
+void Game::capFPS(Uint32 startingTicks)
 {
-	switch (this->board[y][x])
+	if ( (1000 / FPS) > SDL_GetTicks() - startingTicks )
 	{
-	case -1: return '@'; break;
-	case 0: return ' '; break;
-	case 1: return (char)1; break;
-	case 2: return '.'; break;
-	default: return '@'; break;
-	}
-}
-
-unsigned short Game::getColorAt(int y, int x)
-{
-	switch (this->board[y][x])
-	{
-	case 1: return ConsoleOutput::getColor(ConsoleOutput::RED, 1, 0); break;
-	case -1: return ConsoleOutput::getColor(ConsoleOutput::YELLOW, 0, 0);
-	case 2: return ConsoleOutput::getColor(ConsoleOutput::RED, 0, 0);
-	default: return ConsoleOutput::WHITE; 
+		SDL_Delay( 1000 / FPS - (SDL_GetTicks() - startingTicks) );
 	}
 }
 
@@ -82,7 +127,7 @@ bool Game::canMove(Player p, int dy, int dx)
 		y = p.getPosY() + dy;
 
 	if (x < 0 || y < 0 || x >= this->width || y >= this->width) return false;
-	if (this->board[y][x] == -1) return false;
+	if (this->board[y][x] == -1 || this->board[y][x] == -2) return false;
 	return true;
 }
 

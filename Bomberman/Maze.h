@@ -47,12 +47,27 @@ public:
 	};
 
 	//Accepts only odd sizes
-	void generateMaze(char[Maze::MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH]);
+	void generateMazeDFS(char[Maze::MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH]);
 
+	void generateMazeRandom(char [Maze::MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH]);
 
 	Stack<Maze::cell> calculatePath(char[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH], cell, cell);
 
+	/*
+	Removes percent% random walls from the maze
+	@param maze to be randomized
+	@param the percent of walls to be turned into path
+	*/
 	void randomizedGaps(char[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH], int);
+
+	/*
+	@param the maze to be randomized
+	@param maxNumber of corridors to be created
+	@param maxDepth of the corridor
+	*/
+	void randomizedCorridors(char[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH], int, int);
+
+	bool cellCanBeChanged(int, int);
 
 private:
 	Stack <cell> reconstructPath(cell, cell, short[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH]);

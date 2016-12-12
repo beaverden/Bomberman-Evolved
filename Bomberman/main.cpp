@@ -11,8 +11,9 @@
 #include <windows.h>
 #include "ConsoleOutput.h"
 #include "Game.h"
-//#include <d2d1.h>
-//#pragma comment(lib, "d2d1")
+#include "SDL.h"
+#include "graphics.h"
+
 
 
 #define KEY_UP 72
@@ -20,49 +21,15 @@
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
 
-void SetColor(int ForgC)
-{
-	HANDLE  hConsole;
-	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(hConsole, ForgC);
-	return;
-}
+#define FPS 60
 
-int main()
+int main(int argc, char* argv[])
 {
 
 	Game game;
-	game.initLevel(17, 45);
-	game.printBoard();
-	//ConsoleOutput::setChar(5, 10, '@', 4);
-	while (true)
-	{
-		int key = 0;
-		key = _getch();
-
-		if (key == KEY_UP)
-		{
-			game.movePlayer(-1, 0);
-		}
-		else if (key == KEY_DOWN)
-		{
-			game.movePlayer(1, 0);
-		}
-		else if (key == KEY_RIGHT)
-		{
-			game.movePlayer(0, 1);
-		}
-		else if (key == KEY_LEFT)
-		{
-			game.movePlayer(0, -1);
-		}
-		else
-		{
-			continue;
-		}
-		game.printBoard();
-	}
-	_getch();
+	game.gameLoop();
+	
+	//_getch();
 	
 	/*
 		st = maze.calculatePath(board, { posY, posX }, { height - 2, width - 2 });
@@ -94,42 +61,6 @@ int main()
 			board[st.curr().y][st.curr().x] = 0;
 			st.next();
 		}
-
-	}
-	*/
-
-	/*
-	
-
-	system("cls");
-
-	int posX = player.getPosX();
-	int posY = player.getPosY();
-	if (posX == 9)
-	{
-	player.setPosX(0);
-	}
-	if (posY == 9)
-	{
-	player.setPosY(0);
-	}
-
-	//printf("%d %d\n", posY, posY);
-	for (int i = 0; i < 10; i++)
-	{
-	for (int j = 0; j < 10; j++)
-	{
-	if (i == posX && j == posY)
-	{
-	printf("*");
-	}
-	else
-	{
-	printf(".");
-	}
-	}
-	printf("\n");
-	}
 
 	}
 	*/

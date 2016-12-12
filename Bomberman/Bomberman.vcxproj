@@ -68,7 +68,11 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\SDL2-2.0.5\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\SDL2-2.0.5\lib\x86;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -76,6 +80,10 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -113,6 +121,7 @@
   <ItemGroup>
     <ClInclude Include="ConsoleOutput.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="graphics.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Maze.h" />
     <ClInclude Include="Pair.h" />
@@ -123,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="ConsoleOutput.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="graphics.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Maze.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>

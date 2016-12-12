@@ -45,7 +45,7 @@ void Maze::resetArray(char maze[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH])
 }
 
 
-void Maze::generateMaze(char maze[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH])
+void Maze::generateMazeDFS(char maze[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH])
 {
 	Stack <cell> mainStack;
 	bool visited[MAX_HEIGHT][MAX_WIDTH] = { false };
@@ -107,6 +107,42 @@ void Maze::generateMaze(char maze[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH])
 	}
 }
 
+void Maze::generateMazeRandom(char maze[Maze::MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH])
+{
+	for (int i = 0; i < this->mazeHeight; i++)
+	{
+		for (int j = 0; j < this->mazeWidth; j++)
+		{
+			if (i == 0 || j == 0 || i == this->mazeHeight - 1 || j == this->mazeWidth - 1)
+			{
+				maze[i][j] = -1;
+			}
+			else if (
+				i % 2 == 1 && j % 2 == 1 &&
+				i > 2 && i < this->mazeHeight - 3 &&
+				j > 2 && j < this->mazeWidth - 3)
+			{
+				maze[i][j] = -1;
+			}
+			else
+			{
+				maze[i][j] = 0;
+			}
+		}
+	}
+
+	for (int i = 0; i < 200; i++)
+	{
+		int rx = 1 + rand() % (this->mazeWidth - 2),
+			ry = 1 + rand() % (this->mazeHeight - 2);
+		if (maze[ry][rx] == 0)
+		{
+			maze[ry][rx] = -2;
+		}
+		
+	}
+
+}
 
 
 Stack<Maze::cell> Maze::calculatePath(char maze[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH], cell start, cell end)
@@ -185,7 +221,7 @@ Stack <Maze::cell> Maze::reconstructPath(cell start, cell finish, short minDista
 }
 
 
-void Maze::randomizedGaps(char maze[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH], int count)
+void Maze::randomizedGaps(char maze[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH], int percent)
 {
 	Pair<int, int> walls[MAX_MAZE_HEIGHT*MAX_MAZE_WIDTH];
 	int wallsSize = 0;
@@ -201,9 +237,11 @@ void Maze::randomizedGaps(char maze[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH], int count)
 		}
 	}
 	//Take down only 7% of the walls if the count is not specified
+	int amount = 0;
+	if (percent == -1) amount = (int)((0.07)*wallsSize);
+	else amount = (int)((percent / 100.0)*wallsSize);
 
-	if (count == -1) count = (int)((0.07)*wallsSize);
-	while (count--)
+	while (amount--)
 	{
 		int randomPosition = rand() % wallsSize;
 		Pair<int, int> randomWall = walls[randomPosition];
@@ -218,6 +256,59 @@ void Maze::randomizedGaps(char maze[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH], int count)
 	}
 }
 
+
+void Maze::randomizedCorridors(char maze[MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH], int number, int maxDepth)
+{
+
+	while (number--)
+	{
+		int startingY = 1 + rand() % (this->mazeHeight - 1);
+		int startingX = 1 + rand() % (this->mazeWidth - 1);
+		int depthX = 2 + rand() % (maxDepth - 2);
+		int depthY = 2 + rand() % (maxDepth - 2);
+		
+		int dx = 0,
+			dy = 0;
+		for (int i = 0; i < depthX; i++)
+		{
+			int dirOneX = startingX + dx,
+				dirOneY = startingY + dy,
+				dirTwoX = startingX - dx,
+				dirTwoY = startingY - dy;
+			if (cellCanBeChanged(dirOneY, dirOneX))
+			{
+				maze[dirOneY][dirOneX] = 0;
+			}
+			if (cellCanBeChanged(dirTwoY, dirTwoX))
+			{
+				maze[dirTwoY][dirTwoX] = 0;
+			}
+			dx += 1;
+		}
+
+		for (int i = 0; i < depthY; i++)
+		{
+			int dirOneX = startingX + dx,
+				dirOneY = startingY + dy,
+				dirTwoX = startingX - dx,
+				dirTwoY = startingY - dy;
+			if (cellCanBeChanged(dirOneY, dirOneX))
+			{
+				maze[dirOneY][dirOneX] = 0;
+			}
+			if (cellCanBeChanged(dirTwoY, dirTwoX))
+			{
+				maze[dirTwoY][dirTwoX] = 0;
+			}
+			dy += 1;
+		}
+	}
+}
+
+bool Maze::cellCanBeChanged(int y, int x)
+{
+	return (y > 0 && x > 0 && y < this->mazeHeight - 1 && x < this->mazeWidth - 1);
+}
 
 /* CELL STRUCT IMPLEMENTATION */
 bool Maze::cell::exists(int y, int x, const int ARENA_HEIGHT, const int ARENA_WIDTH)
