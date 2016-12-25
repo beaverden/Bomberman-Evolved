@@ -3,18 +3,30 @@
 
 
 #include "Queue.h"
+#include "Stack.h"
+#include "Vector.h"
+
 #include <stdio.h>
 #include <windows.h>
 #include <conio.h>
 #include "Maze.h"
-#include "Stack.h"
-#include <windows.h>
-#include "ConsoleOutput.h"
+
 #include "Game.h"
 #include "SDL.h"
 #include "graphics.h"
+#include <string>
+#include <fstream>
+#include "Sprite.h"
+#include "SpriteGroup.h"
+
+#include <vector>
+#include <time.h>
+#include <cstdlib>
+#include "SDL_Image.h"
+#include "SDL_Mixer.h"
 
 
+using namespace std;
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -23,47 +35,40 @@
 
 #define FPS 60
 
+
+class A
+{
+public:
+	A()
+	{
+		p = new int;
+		*p = 5;
+	}
+	~A()
+	{
+		delete p;
+	}
+	int * p;
+};
+
+class B
+{
+public:
+	A a;
+};
+
 int main(int argc, char* argv[])
 {
 
 	Game game;
 	game.gameLoop();
-	
-	//_getch();
-	
-	/*
-		st = maze.calculatePath(board, { posY, posX }, { height - 2, width - 2 });
-		st.iterator();
-
-		while (!st.isNull())
-		{
-			board[st.curr().y][st.curr().x] = 1;
-			st.next();
-		}
-		for (int i = 0; i < height; i++)
-		{
-			for (int j = 0; j < width; j++)
-			{
-				if (i == posY && j == posX) { printf("O"); continue; }
-				//SetColor(15);
-				switch (board[i][j])
-				{
-				case -1: printf("@"); break;
-				case 0: printf(" "); break;
-				case 1: { SetColor(5);  printf("+");  SetColor(15); } break;
-				}
-			}
-			printf("\n");
-		}
-		st.iterator();
-		while (!st.isNull())
-		{
-			board[st.curr().y][st.curr().x] = 0;
-			st.next();
-		}
-
+	B b;
+	if (b.a.p)
+	{
+		printf("Heya %d", *(b.a.p));
 	}
-	*/
+	_getch();
+
 	return 0;
 }
 

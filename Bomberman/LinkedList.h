@@ -144,6 +144,14 @@ public:
 
 	}
 
+	void clear()
+	{
+		while (!empty())
+		{
+			this->remove(0);
+		}
+	}
+
 	int size()
 	{
 		return this->length;

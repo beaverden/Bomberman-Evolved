@@ -1,23 +1,48 @@
 #include "Game.h"
-#include "ConsoleOutput.h"
 #include "Pair.h"
 #include <random>
 #include <time.h>
+#include "SDL_Image.h"
 
 #define FPS 60
 
 Game::Game()
 {
-	this->printedForFirstTime = false;
 	srand(time(0));
-	this->graphics.init(620, 620);
-	this->initLevel(31, 31);
-	
+	this->graphics.init(600, 600);
+	this->initLevel(20, 20);
+	this->loadTextures();
 }
 
 
 Game::~Game()
 {
+	playerPath.clear();
+	updateCells.clear();
+	freeTextures();
+}
+
+void Game::loadTextures()
+{
+	if (!grass.loadImage("Resources/grass.png"))
+	{
+		printf("Couldn't load grass: %s\n", SDL_GetError());
+	}
+	if (!stone.loadImage("Resources/stone.png"))
+	{
+		printf("Couldn't load stone: %s\n", SDL_GetError());
+	}
+	if (!wall.loadImage("Resources/wall.png"))
+	{
+		printf("Couldn't load wall: %s\n", SDL_GetError());
+	}
+}
+
+void Game::freeTextures()
+{
+	SDL_FreeSurface(grass.getTexture());
+	SDL_FreeSurface(stone.getTexture());
+	SDL_FreeSurface(wall.getTexture());
 }
 
 void Game::initLevel(int height, int width)
@@ -25,39 +50,37 @@ void Game::initLevel(int height, int width)
 	this->height = height;
 	this->width = width;
 	Maze initMaze(height, width);
-	initMaze.generateMazeRandom(this->board);
-	this->board[1][1] = 1; //Player
+	initMaze.generateMazeRandom(this->maze);
 }
 
 void Game::printBoard()
 {
 	
-	if (!this->printedForFirstTime)
+	graphics.reset(255, 255, 255);
+	for (int i = 0; i < this->height; i++)
 	{
-		graphics.reset(255, 255, 255);
-		SDL_Rect * rect = new SDL_Rect;
-		for (int i = 0; i < this->height; i++)
-		{
-			for (int j = 0; j < this->width; j++)
+		for (int j = 0; j < this->width; j++)
+		{		
+			if (maze[i][j] == 0) 
 			{
-				rect->x = j * 20;
-				rect->y = i * 20;
-				rect->w = 20;
-				rect->h = 20;
-				graphics.fillRect(rect, this->getColorAt(i, j));
+				grass.drawTo(graphics.getSurface(), j * 30, i * 30);
+			}
+			else if (maze[i][j] == -1)
+			{
+				stone.drawTo(graphics.getSurface(), j * 30, i * 30);
+			}
+			else if (maze[i][j] == -2)
+			{
+				wall.drawTo(graphics.getSurface(), j * 30, i * 30);
 			}
 		}
-		if (rect)
-		{
-			delete rect;
-		}	
-		graphics.update();
 	}
+	graphics.update();
 }
 
 Uint32 Game::getColorAt(int y, int x)
 {
-	switch (this->board[y][x])
+	switch (this->maze[y][x])
 	{
 	case -1: return graphics.getColor(0, 0, 0); break;
 	case -2: return graphics.getColor(0, 50, 50); break;
@@ -127,7 +150,7 @@ bool Game::canMove(Player p, int dy, int dx)
 		y = p.getPosY() + dy;
 
 	if (x < 0 || y < 0 || x >= this->width || y >= this->width) return false;
-	if (this->board[y][x] == -1 || this->board[y][x] == -2) return false;
+	if (this->maze[y][x] == -1 || this->maze[y][x] == -2) return false;
 	return true;
 }
 
@@ -160,7 +183,7 @@ void Game::setPlayerPath()
 
 	this->resetPath();
 
-	this->playerPath = maze.calculatePath(this->board, { playerY, playerX }, { this->height - 2, this->width - 2 });
+	this->playerPath = maze.calculatePath(this->maze, { playerY, playerX }, { this->height - 2, this->width - 2 });
 
 
 	this->playerPath.iterator();
@@ -186,7 +209,7 @@ void Game::resetPath()
 		int y = this->playerPath.curr().y,
 			x = this->playerPath.curr().x;
 
-		if (this->board[y][x] != 1) 
+		if (this->maze[y][x] != 1) 
 		//Don't reset player cell
 		{
 			if (this->setCell(y, x, 0))
@@ -202,7 +225,7 @@ void Game::resetPath()
 
 bool Game::setCell(int y, int x, char newData)
 {
-	char curr = this->board[y][x];
+	char curr = this->maze[y][x];
 	bool allow = false;
 
 	if (curr == newData)
@@ -227,7 +250,7 @@ bool Game::setCell(int y, int x, char newData)
 	}
 	if (allow)
 	{
-		this->board[y][x] = newData;
+		this->maze[y][x] = newData;
 		return true;
 	}
 	return false;

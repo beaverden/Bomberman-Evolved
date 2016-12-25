@@ -131,7 +131,7 @@ void Maze::generateMazeRandom(char maze[Maze::MAX_MAZE_HEIGHT][MAX_MAZE_WIDTH])
 		}
 	}
 
-	for (int i = 0; i < 200; i++)
+	for (int i = 0; i < 100; i++)
 	{
 		int rx = 1 + rand() % (this->mazeWidth - 2),
 			ry = 1 + rand() % (this->mazeHeight - 2);

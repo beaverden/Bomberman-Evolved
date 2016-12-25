@@ -24,8 +24,19 @@ void Graphics::init(int height, int width)
 				height,
 				0
 	);
-
+	this->windowHeight = height;
+	this->windowWidth = width;
 	this->surface = SDL_GetWindowSurface(this->window);
+}
+
+void Graphics::setSurface(SDL_Surface * newSurface)
+{
+	this->surface = newSurface;
+}
+
+SDL_Surface * Graphics::getSurface()
+{
+	return this->surface;
 }
 
 void Graphics::fillRect(SDL_Rect * rect, Uint32 color)
@@ -58,4 +69,14 @@ SDL_Rect * Graphics::getRect(int x, int y, int w, int h)
 void Graphics::update()
 {
 	SDL_UpdateWindowSurface(this->window);
+}
+
+int Graphics::getHeight()
+{
+	return this->windowHeight;
+}
+
+int Graphics::getWidth()
+{
+	return this->windowWidth;
 }

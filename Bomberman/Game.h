@@ -4,11 +4,16 @@
 #include "Pair.h"
 #include "Queue.h"
 #include "graphics.h"
+#include "Texture.h"
+
 class Game
 {
 public:
 	Game();
 	~Game();
+
+	void loadTextures();
+	void freeTextures();
 
 	/*
 		@param height of the maze
@@ -18,16 +23,17 @@ public:
 	*/
 	void initLevel(int, int);
 
+
 	/* 
-		Prints the game board
-		Prints only the changes between the new board and old board
+		Prints the game maze
+		Prints only the changes between the new maze and old maze
 	*/
 	void printBoard();
 
 	/*
-		@param y position on the board
-		@param x position on the board
-		Returns the zone color specified by the game board
+		@param y position on the maze
+		@param x position on the maze
+		Returns the zone color specified by the game maze
 	*/
 	Uint32 getColorAt(int, int);
 
@@ -42,9 +48,9 @@ public:
 private:	
 	int height;
 	int width;
-	bool printedForFirstTime;
-	char board[Maze::MAX_MAZE_HEIGHT][Maze::MAX_MAZE_WIDTH];
-	char previousBoard[Maze::MAX_MAZE_HEIGHT][Maze::MAX_MAZE_WIDTH];
+
+	char maze[Maze::MAX_MAZE_HEIGHT][Maze::MAX_MAZE_WIDTH];
+	LinkedList <Player> players;
 
 	Graphics graphics;
 	void capFPS(Uint32);
@@ -57,6 +63,8 @@ private:
 
 	Queue <Pair<int, int>> updateCells;
 
-
+	Texture grass;
+	Texture stone;
+	Texture wall;
 };
 

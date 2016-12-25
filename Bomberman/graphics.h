@@ -8,7 +8,11 @@ public:
 
 	void init(int, int);
 
-	void fillRect(SDL_Rect * , Uint32);
+	void setSurface(SDL_Surface *);
+
+	SDL_Surface * getSurface();
+
+	void fillRect(SDL_Rect *, Uint32);
 
 	void reset(Uint8, Uint8, Uint8);
 
@@ -16,9 +20,15 @@ public:
 
 	SDL_Rect * getRect(int, int, int, int);
 
-
 	void update();
+
+	int getHeight();
+
+	int getWidth();
+
 private:
+	int windowHeight;
+	int windowWidth;
 	SDL_Window * window;
 	SDL_Surface * surface;
 };
