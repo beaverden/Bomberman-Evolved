@@ -1,35 +1,67 @@
 #pragma once
 #include "SDL.h"
+#include "SDL_image.h"
+#include "Map.h"
+#include "Vector.h"
+
 class Graphics
 {
 public:
-	Graphics();
-	~Graphics();
 
-	void init(int, int);
+	/**
+	*	Initializes the graphics library
+	*	Sets up the window and the image library
+	*/
+	static void init();
 
-	void setSurface(SDL_Surface *);
 
-	SDL_Surface * getSurface();
+	/**
+	*	Frees up all the memory and destroys the window 
+	*	Also destroys the renderer
+	*/
+	static void destroy();
 
-	void fillRect(SDL_Rect *, Uint32);
 
-	void reset(Uint8, Uint8, Uint8);
+	/**
+	*	Adds a texture to the renderer
+	*	@param source texture to be added
+	*	@param sourceRectangle to crop from source texture
+	*	@param destinationRectangle of the window to be printed on
+	*/
+	static void addToRenderer(SDL_Texture* source, SDL_Rect* sourceRectangle, SDL_Rect* destinationRectangle);
 
-	Uint32 getColor(Uint8, Uint8, Uint8);
+	/**
+	*	Draws all the content pushed into the renderer to the screen
+	*/
+	static void drawRenderer();
 
-	SDL_Rect * getRect(int, int, int, int);
+	/**
+	*	Removes all the content from the renderer
+	*/
+	static void clearRenderer();
 
-	void update();
+	static SDL_Renderer* getRenderer();
 
-	int getHeight();
+	/**
+	*	Loads a image from the specified path
+	*	If loaded for the first time, it will be saved
+	*	If loaded again, it will be pulled out of the images map
+	*	@param filepath on the machine (relative to project .exe)
+	*/
+	static SDL_Surface* loadImage(const std::string &filepath);
 
-	int getWidth();
+	/**
+	*	Transforms a loaded image (surface) into a texture
+	*	Loads the image with the @function [loadImage]
+	*	@param filepath on the machine (relative to project .exe)
+	*/
+	static SDL_Texture* loadTexture(const std::string &filepath);
 
 private:
-	int windowHeight;
-	int windowWidth;
-	SDL_Window * window;
-	SDL_Surface * surface;
+	static SDL_Window* window;
+	static SDL_Renderer* renderer;
+
+	static Map <std::string, SDL_Surface*> images;
+
 };
 

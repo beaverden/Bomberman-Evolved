@@ -9,15 +9,13 @@
 #include <stdio.h>
 #include <windows.h>
 #include <conio.h>
-#include "Maze.h"
+#include "Arena.h"
 
 #include "Game.h"
 #include "SDL.h"
 #include "graphics.h"
 #include <string>
 #include <fstream>
-#include "Sprite.h"
-#include "SpriteGroup.h"
 
 #include <vector>
 #include <time.h>
@@ -35,40 +33,12 @@ using namespace std;
 
 #define FPS 60
 
-
-class A
-{
-public:
-	A()
-	{
-		p = new int;
-		*p = 5;
-	}
-	~A()
-	{
-		delete p;
-	}
-	int * p;
-};
-
-class B
-{
-public:
-	A a;
-};
+#include "Map.h"
 
 int main(int argc, char* argv[])
 {
 
 	Game game;
-	game.gameLoop();
-	B b;
-	if (b.a.p)
-	{
-		printf("Heya %d", *(b.a.p));
-	}
-	_getch();
-
 	return 0;
 }
 

@@ -13,10 +13,7 @@ public:
 		array_size = 0;
 	}
 
-	~Vector()
-	{
-		delete[] elements;
-	}
+	~Vector() {}
 
 	int size()
 	{

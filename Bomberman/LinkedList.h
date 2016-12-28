@@ -11,7 +11,7 @@ public:
 		this->length = 0;
 	}
 
-	virtual ~LinkedList()
+	~LinkedList()
 	{
 	}
 

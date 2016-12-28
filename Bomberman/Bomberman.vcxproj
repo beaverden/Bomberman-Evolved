@@ -119,28 +119,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedSprite.h" />
     <ClInclude Include="ConsoleOutput.h" />
+    <ClInclude Include="Creature.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="globals.h" />
     <ClInclude Include="graphics.h" />
+    <ClInclude Include="KeyboardInput.h" />
     <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="Maze.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="Arena.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="Pair.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Queue.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="ConsoleOutput.cpp" />
+    <ClCompile Include="Creature.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="graphics.cpp" />
+    <ClCompile Include="KeyboardInput.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Maze.cpp">
+    <ClCompile Include="Arena.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>

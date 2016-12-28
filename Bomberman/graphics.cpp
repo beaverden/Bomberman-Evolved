@@ -1,82 +1,74 @@
 #include "graphics.h"
+#include "Globals.h"
 
+SDL_Window* Graphics::window = nullptr;
+SDL_Renderer* Graphics::renderer = nullptr;
+Map <std::string, SDL_Surface*> Graphics::images;
 
-
-Graphics::Graphics()
+void Graphics::init()
 {
+	SDL_Init(SDL_INIT_EVERYTHING);
+	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
+
+	SDL_CreateWindowAndRenderer
+	(
+		Globals::SCREEN_WIDTH, 
+		Globals::SCREEN_HEIGHT, 
+		0, 
+		&window, 
+		&renderer
+	);
+	SDL_SetWindowTitle(window, "Bomberman Evolved");
 }
 
 
-Graphics::~Graphics()
+void Graphics::destroy()
 {
-	SDL_DestroyWindow(this->window);
+	images.clear();
+	SDL_DestroyWindow(window);
+	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 }
 
-void Graphics::init(int height, int width)
+
+SDL_Surface* Graphics::loadImage(const std::string &filepath)
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
-	this->window = SDL_CreateWindow(
-				"Bomberman Evolved",
-				SDL_WINDOWPOS_CENTERED,
-				SDL_WINDOWPOS_CENTERED,
-				width,
-				height,
-				0
-	);
-	this->windowHeight = height;
-	this->windowWidth = width;
-	this->surface = SDL_GetWindowSurface(this->window);
+	SDL_Surface* loaded = images[filepath];
+	if (!loaded)
+	{
+		loaded = IMG_Load(filepath.c_str());
+		if (!loaded)
+		{
+			printf("There has been an error loading from: %s: %s", filepath, SDL_GetError());
+		}
+		else
+		{
+			images[filepath] = loaded;
+		}
+	}
+	return loaded;
 }
 
-void Graphics::setSurface(SDL_Surface * newSurface)
+SDL_Texture* Graphics::loadTexture(const std::string &filepath)
 {
-	this->surface = newSurface;
+	SDL_Surface* image = loadImage(filepath);
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
+	SDL_FreeSurface(image);
+	return texture;
 }
 
-SDL_Surface * Graphics::getSurface()
-{
-	return this->surface;
+void Graphics::addToRenderer(SDL_Texture* texture, SDL_Rect* sourceRectangle, SDL_Rect* destinationRectangle) {
+	SDL_RenderCopy(renderer, texture, sourceRectangle, destinationRectangle);
 }
 
-void Graphics::fillRect(SDL_Rect * rect, Uint32 color)
-{
-
-	SDL_FillRect(this->surface, rect, color);
+void Graphics::drawRenderer() {
+	SDL_RenderPresent(renderer);
 }
 
-void Graphics::reset(Uint8 r, Uint8 g, Uint8 b)
-{
-	this->fillRect(NULL, this->getColor(r, g, b));
+void Graphics::clearRenderer() {
+	SDL_RenderClear(renderer);
 }
 
-Uint32 Graphics::getColor(Uint8 r, Uint8 g, Uint8 b)
-{
-	return SDL_MapRGB(this->surface->format, r, g, b);
-}
-
-
-SDL_Rect * Graphics::getRect(int x, int y, int w, int h)
-{
-	SDL_Rect * rect = new SDL_Rect;
-	rect->x = x;
-	rect->y = y;
-	rect->w = w;
-	rect->h = h;
-	return rect;
-}
-
-void Graphics::update()
-{
-	SDL_UpdateWindowSurface(this->window);
-}
-
-int Graphics::getHeight()
-{
-	return this->windowHeight;
-}
-
-int Graphics::getWidth()
-{
-	return this->windowWidth;
+SDL_Renderer* Graphics::getRenderer() {
+	return renderer;
 }

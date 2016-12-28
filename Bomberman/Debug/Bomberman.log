@@ -1,7 +1,2 @@
-﻿  Game.cpp
-c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\game.h(7): fatal error C1083: Cannot open include file: 'Sprite.h': No such file or directory
-  Generating Code...
-  Compiling...
-  main.cpp
-c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\game.h(7): fatal error C1083: Cannot open include file: 'Sprite.h': No such file or directory
-  Generating Code...
+﻿  Bomberman.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman\Debug\Bomberman.exe
+  Bomberman.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman\Debug\Bomberman.pdb (Partial PDB)

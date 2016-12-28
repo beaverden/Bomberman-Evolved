@@ -4,6 +4,9 @@ class Pair
 {
 public:
 
+	A first;
+	B second;
+
 	Pair()
 	{
 
@@ -11,32 +14,12 @@ public:
 
 	Pair(A first, B second)
 	{
-		this->firstElement = first;
-		this->secondElement = second;
+		this->first = first;
+		this->second = second;
 	}
 
 	~Pair()
 	{
-	}
-
-	A first()
-	{
-		return this->firstElement;
-	}
-
-	B second()
-	{
-		return this->secondElement;
-	}
-
-	void setFirst(A newFirst)
-	{
-		this->firstElement = newFirst;
-	}
-
-	void setSecond(A newSecond)
-	{
-		this->secondElement = newSecond;
 	}
 
 	Pair operator()(A _first, B _second)
@@ -45,8 +28,15 @@ public:
 		return p;
 	}
 
-private:
-	A firstElement;
-	B secondElement;
+	bool operator==(const Pair<A, B> &that)
+	{
+		return (this->first == that.first && this->second == that.second);
+	}
+
+	bool operator!=(const Pair<A, B> &that)
+	{
+		return !(*this == that);
+	}
+
 };
 
