@@ -1,4 +1,7 @@
 #pragma once
+#ifndef KEYBOARD_INPUT_H
+#define KEYBOARD_INPUT_H
+
 #include "Map.h"
 #include "SDL.h"
 
@@ -17,9 +20,14 @@ public:
 	bool wasKeyReleased(SDL_Scancode key);
 	bool isKeyHeld(SDL_Scancode key);
 
+	void processInputs();
+
 private:
 	Map <SDL_Scancode, bool> heldKeys;
 	Map <SDL_Scancode, bool> releasedKeys;
 	Map <SDL_Scancode, bool> pressedKeys;
+	SDL_Event event;
 };
+
+#endif /* KEYBOARD_INPUT_H */
 

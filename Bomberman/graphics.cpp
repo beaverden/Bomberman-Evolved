@@ -53,7 +53,6 @@ SDL_Texture* Graphics::loadTexture(const std::string &filepath)
 {
 	SDL_Surface* image = loadImage(filepath);
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, image);
-	SDL_FreeSurface(image);
 	return texture;
 }
 

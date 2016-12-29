@@ -1,12 +1,16 @@
 #pragma once
+#ifndef CREATURE_H
+#define CREATURE_H
+
 #include "Object.h"
 #include "AnimatedSprite.h"
+#include "Arena.h"
 
 class Creature: public Object
 {
 public:
 	Creature();
-	Creature(int posX, int posY, AnimatedSprite sprite);
+	Creature(int posX, int posY, int movementSpeed, AnimatedSprite sprite);
 	~Creature();
 
 
@@ -30,7 +34,7 @@ public:
 		@param stones vector containing stone objects
 		@param walls vector containing wall objects
 	*/
-	bool canMove(int dx, int dy, Vector <Object> &stones, Vector<Object> &walls);
+	bool canMove(int dx, int dy);
 
 	/**
 		Sets the creature's sprite
@@ -40,7 +44,9 @@ public:
 	*/
 	void setSprite(const std::string &filepath, SDL_Rect rect);
 
+
 	AnimatedSprite& getSprite();
+
 
 	/**
 		Draws the creature to the window in its posX, posY
@@ -54,11 +60,33 @@ public:
 	bool isAlive();
 	void setDead();
 
+	void setSpeed(int speed);
+
+	bool moveLeft();
+	bool moveRight();
+	bool moveUp();
+	bool moveDown();
+
+	/**
+		Checks if the player has moved in the previous frame
+		Resets the hasMoved bool variable to false for each frame
+		@return the current hasMoved value
+	*/
+	bool moved();
+
+	/**
+		Plays the idle animation in the last movement direction
+	*/
+	void idle();
+
 private:
 	int posX;
 	int posY;
 	int movementSpeed;
 	bool alive;
+	bool hasMoved;
+	int movementDirection;
 	AnimatedSprite sprite;
 };
 
+#endif /* CREATURE_H */

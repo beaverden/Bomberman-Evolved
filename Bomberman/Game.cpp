@@ -16,6 +16,7 @@ Game::Game()
 	Arena::generateRandomArena();
 
 	player.setPosition(30, 30);
+	player.setSpeed(Globals::PLAYER_SPEED);
 	player.setBox({ 30, 30, 17, 22 });
 
 	this->loadTextures();
@@ -38,7 +39,6 @@ void Game::loadTextures()
 
 void Game::setAnimations()
 {
-	int start;
 	player.getSprite().addAnimationFrame("default", 125, 2, 15, 22);
 	player.getSprite().setAnimation("default", 0);
 
@@ -65,6 +65,7 @@ void Game::setAnimations()
 void Game::printLevel()
 {
 	Graphics::clearRenderer();
+	
 	Arena::drawArena();
 	player.draw();
 
@@ -74,62 +75,51 @@ void Game::printLevel()
 void Game::gameLoop()
 {
 	KeyboardInput input;
-	SDL_Event event;
 	Uint32 starting_tick;
 	int frameNumber = 0;
-	bool running = true;
 
-	while (running)
+	while (true)
 	{
 		frameNumber++;
-		input.newFrame();
 		starting_tick = SDL_GetTicks();
-
-		while (SDL_PollEvent(&event))
-		{
-			if (event.type == SDL_KEYDOWN)
-			{
-				if (event.key.repeat == 0)
-				{
-					input.keyDownEvent(event);
-				}
-			}
-			else if (event.type == SDL_KEYUP)
-			{
-				input.keyUpEvent(event);
-			}
-			else if (event.type == SDL_QUIT)
-			{
-				return;
-			}
-		}
-
+		input.newFrame();
+		input.processInputs();
+		
 		if (input.wasKeyPressed(SDL_SCANCODE_ESCAPE))
 		{
-			running = false;
 			break;
 		}
 		if (input.isKeyHeld(SDL_SCANCODE_D))
 		{
-			this->movePlayer(0, 4);
-			player.getSprite().playAnimation("walk_right");
-			
+			player.moveRight();
 		}
 		if (input.isKeyHeld(SDL_SCANCODE_A))
 		{
-			this->movePlayer(0, -4);
-			player.getSprite().playAnimation("walk_left");
+			player.moveLeft();
 		}
 		if (input.isKeyHeld(SDL_SCANCODE_W))
 		{
-			this->movePlayer(-4, 0);
-			player.getSprite().playAnimation("walk_up");
+			player.moveUp();
 		}
 		if (input.isKeyHeld(SDL_SCANCODE_S))
 		{
-			this->movePlayer(4, 0);
-			player.getSprite().playAnimation("walk_down");
+			player.moveDown();
 		}
+		if (input.wasKeyPressed(SDL_SCANCODE_SPACE))
+		{
+			printf("Bomb placed\n");
+			Bomb newBomb(
+				player.getPosX(),
+				player.getPosY(),
+				Globals::DEFAUT_BOMB_DURATION
+			);
+			Arena::bombs.push_back(newBomb);
+		}
+		if (!player.moved())
+		{
+			player.idle();
+		}
+		
 
 		this->printLevel();
 		
@@ -147,17 +137,3 @@ void Game::capFPS(Uint32 startingTicks)
 	}
 }
 
-
-bool Game::movePlayer(int dx, int dy)
-{
-	if (player.canMove(dx, dy, Arena::stones, Arena::walls))
-	{
-		this->player.moveBy(dx, dy);
-	}
-	else
-	{
-		return false;
-	}
-	
-	return true;
-}

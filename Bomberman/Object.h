@@ -1,4 +1,7 @@
 #pragma once
+#ifndef OBJECT_H
+#define OBJECT_H
+
 #include "SDL.h"
 #include "Vector.h"
 class Object
@@ -29,4 +32,7 @@ private:
 	*/
 	bool in(int x1, int x2, int x3);
 };
+
+
+#endif /* OBJECT_H */
 

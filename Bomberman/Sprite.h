@@ -1,4 +1,7 @@
 #pragma once
+#ifndef SPRITE_H
+#define SPRITE_H
+
 #include "SDL.h"
 #include "graphics.h"
 
@@ -27,8 +30,9 @@ public:
 protected:
 	SDL_Texture* texture;
 
-	//The x,y,w,h parameters of the sprite on the spriteSheet;
+	//The x,y,w,h parameters of the sprite on the texture;
 	SDL_Rect usedRect;
 private:
 };
 
+#endif /* SPRITE_H */

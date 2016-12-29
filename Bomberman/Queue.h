@@ -1,4 +1,6 @@
 #pragma once
+#ifndef QUEUE_H
+#define QUEUE_H
 #include "LinkedList.h"
 
 template <class T>
@@ -25,5 +27,7 @@ public:
 		return this->get(0);
 	}
 };
+
+#endif /* QUEUE_H */
 
 

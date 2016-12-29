@@ -13,6 +13,8 @@ Sprite Arena::stoneSprite;
 
 Vector <Object> Arena::stones;
 Vector <Object> Arena::walls;
+Vector <Bomb> Arena::bombs;
+
 
 void Arena::init()
 {
@@ -83,5 +85,13 @@ void Arena::drawArena()
 	{
 		SDL_Rect rect = walls[i].getBox();
 		wallSprite.draw(rect.x, rect.y);
+	}
+
+	for (int i = 0; i < bombs.size(); i++)
+	{
+		bombs[i].getSprite().draw(
+			bombs[i].getPosX(), 
+			bombs[i].getPosY()
+		);
 	}
 }

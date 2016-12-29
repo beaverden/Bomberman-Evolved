@@ -1,13 +1,11 @@
 // PixelRPG.cpp : Defines the entry point for the console application.
 //
 
-
 #include "Queue.h"
 #include "Stack.h"
 #include "Vector.h"
 
 #include <stdio.h>
-#include <windows.h>
 #include <conio.h>
 #include "Arena.h"
 
@@ -17,12 +15,9 @@
 #include <string>
 #include <fstream>
 
-#include <vector>
-#include <time.h>
 #include <cstdlib>
 #include "SDL_Image.h"
 #include "SDL_Mixer.h"
-
 
 using namespace std;
 
@@ -35,9 +30,9 @@ using namespace std;
 
 #include "Map.h"
 
+
 int main(int argc, char* argv[])
 {
-
 	Game game;
 	return 0;
 }

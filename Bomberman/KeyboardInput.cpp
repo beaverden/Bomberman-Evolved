@@ -44,3 +44,25 @@ bool KeyboardInput::isKeyHeld(SDL_Scancode key)
 {
 	return heldKeys[key];
 }
+
+void KeyboardInput::processInputs()
+{
+	while (SDL_PollEvent(&event))
+	{
+		if (event.type == SDL_KEYDOWN)
+		{
+			if (event.key.repeat == 0)
+			{
+				keyDownEvent(event);
+			}
+		}
+		else if (event.type == SDL_KEYUP)
+		{
+			keyUpEvent(event);
+		}
+		else if (event.type == SDL_QUIT)
+		{
+			return;
+		}
+	}
+}

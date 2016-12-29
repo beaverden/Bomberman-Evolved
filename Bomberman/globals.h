@@ -1,3 +1,5 @@
+#ifndef GLOBALS_H
+#define GLOBALS_H
 
 class Globals
 {
@@ -17,5 +19,11 @@ public:
 	static const int BLOCKS_Y = 17;
 
 	static const int PLAYER_SPEED = 4;
+
+	static const int DEFAUT_BOMB_DURATION = 3000;
+
+	static const int PLAYER_HEIGHT = 17;
+	static const int PLAYER_WIDTH = 15;
 };
 
+#endif /* GLOBALS_H */

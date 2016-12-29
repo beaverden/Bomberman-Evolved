@@ -1,4 +1,6 @@
 #pragma once
+#ifndef STACK_H
+#define STACK_H
 
 #include "LinkedList.h"
 template <class T>
@@ -27,3 +29,4 @@ public:
 	}
 };
 
+#endif /* STACK_H */

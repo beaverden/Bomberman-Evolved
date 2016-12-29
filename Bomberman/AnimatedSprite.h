@@ -1,4 +1,7 @@
 #pragma once
+#ifndef  ANIMATED_SPRITE_H
+#define  ANIMATED_SPRITE_H
+
 #include "Sprite.h"
 #include "SDL.h"
 #include "Vector.h"
@@ -58,4 +61,6 @@ private:
 
 	void setCurrentSpriteRect();
 };
+
+#endif /* ANIMATED_SPRITE_H */
 

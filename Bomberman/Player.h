@@ -1,11 +1,14 @@
 #pragma once
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include "Creature.h"
 
 class Player : public Creature
 {
 public:
 	Player();
-	Player(int x, int y, AnimatedSprite sprite, int bombs);
+	Player(int x, int y, int movementSpeed, AnimatedSprite sprite, int bombs);
 	~Player();
 
 	int getBombs();
@@ -17,4 +20,6 @@ private:
 	int posY;
 	int bombs;
 };
+
+#endif /* PLAYER_H */
 

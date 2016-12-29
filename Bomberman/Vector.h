@@ -1,4 +1,6 @@
 #pragma once
+#ifndef VECTOR_H
+#define VECTOR_H
 #include <stdexcept>
 
 template <class T>
@@ -136,3 +138,4 @@ private:
 	int array_capacity;
 };
 
+#endif /* VECTOR_H */

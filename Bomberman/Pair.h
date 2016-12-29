@@ -1,4 +1,7 @@
 #pragma once
+#ifndef PAIR_H
+#define PAIR_H
+
 template <class A, class B>
 class Pair
 {
@@ -40,3 +43,4 @@ public:
 
 };
 
+#endif /* PAIR_H */

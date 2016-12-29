@@ -120,8 +120,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedSprite.h" />
+    <ClInclude Include="Bomb.h" />
     <ClInclude Include="ConsoleOutput.h" />
     <ClInclude Include="Creature.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="graphics.h" />
@@ -135,13 +137,14 @@
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Stack.h" />
-    <ClInclude Include="Texture.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp" />
+    <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="ConsoleOutput.cpp" />
     <ClCompile Include="Creature.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="KeyboardInput.cpp" />
@@ -153,7 +156,6 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\..\Desktop\sprite.bmp">

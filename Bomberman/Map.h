@@ -1,4 +1,7 @@
 #pragma once
+#ifndef MAP_H
+#define MAP_H
+
 #include <stdexcept>
 
 template <class Key, class Value>
@@ -191,3 +194,5 @@ private:
 		delete h;
 	}
 };
+
+#endif /* MAP_H */

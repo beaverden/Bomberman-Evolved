@@ -1,4 +1,6 @@
 #pragma once
+#ifndef LINKED_LIST_H
+#define LINKED_LIST_H
 
 template <class T>
 class LinkedList
@@ -215,3 +217,5 @@ protected:
 	node *iter;
 	int length;
 };
+
+#endif /* LINKED_LIST_H */

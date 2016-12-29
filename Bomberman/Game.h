@@ -1,10 +1,12 @@
 #pragma once
+#ifndef GAME_H
+#define GAME_H
+
 #include "Arena.h"
 #include "Player.h"
 #include "Pair.h"
 #include "Queue.h"
 #include "graphics.h"
-#include "Texture.h"
 #include "AnimatedSprite.h"
 #include "Vector.h"
 #include "Object.h"
@@ -31,12 +33,10 @@ public:
 	*/
 	void printLevel();
 
-	/*
+	/**
 		Main action loop, listens for events, updates the map and redraws it
 	*/
 	void gameLoop();
-	
-	bool movePlayer(int, int);
 
 
 
@@ -50,4 +50,6 @@ private:
 	Player player;
 
 };
+
+#endif /* GAME_H */
 
