@@ -3,24 +3,22 @@
 
 Bomb::Bomb() {}
 
-Bomb::Bomb(int x, int y, int duration, int explosionArea)
+Bomb::Bomb(int x, int y, int duration, int explosionRadius)
 {
 	Pair<int, int> blockPosition = getPlacementPosition(x, y);
 
-	blockPosition.first += (Globals::BLOCK_HEIGHT - BOMB_HEIGHT) / 2;
-	blockPosition.second += (Globals::BLOCK_WIDTH - BOMB_WIDTH) / 2;
+	blockPosition.first  += (Globals::BLOCK_HEIGHT - BOMB_HEIGHT) / 2;
+	blockPosition.second += (Globals::BLOCK_WIDTH  - BOMB_WIDTH) / 2;
 
 	this->bombPosX = blockPosition.first;
 	this->bombPosY = blockPosition.second;
 	this->bombTime = duration;
-	this->explosionArea = explosionArea;
+	this->explosionRadius = explosionRadius;
 	this->placedAt = std::clock();
 	setAnimations();
 }
 
-Bomb::~Bomb()
-{
-}
+Bomb::~Bomb() {}
 
 Timestamp Bomb::getPlacedTime()
 {
@@ -39,39 +37,65 @@ void Bomb::setBombTime(int duration)
 
 void Bomb::setExplosionArea(int area)
 {
-	this->explosionArea = area;
+	this->explosionRadius = area;
 }
 
 void Bomb::update()
 {
 	double percentage = (getElapsed() / (double)bombTime);
-	if (percentage < 0.33)
+
+	if (percentage < 0.10)
 	{
-		sprite.setAnimation("phase1");
+		sprite.setAnimation("phase_1");
 	}
-	else if (percentage < 0.66)
+	else if (percentage < 0.20)
 	{
-		sprite.setAnimation("phase2");
+		sprite.setAnimation("phase_2");
 	}
-	else
+	else if (percentage < 0.30)
 	{
-		sprite.setAnimation("phase3");
+		sprite.setAnimation("phase_3");
+	}
+	else if (percentage < 0.40)
+	{
+		sprite.setAnimation("phase_2");
+	}
+	else if (percentage < 0.50)
+	{
+		sprite.setAnimation("phase_1");
+	}
+	else if (percentage < 0.60)
+	{
+		sprite.setAnimation("phase_3");
+	}
+	else if (percentage < 0.70)
+	{
+		sprite.setAnimation("phase_1");
+	}
+	else if (percentage < 0.80)
+	{
+		sprite.setAnimation("phase_3");
+	}
+	else if (percentage < 0.90)
+	{
+		sprite.setAnimation("phase_2");
 	}
 }
 
 bool Bomb::exploded()
 {
-	auto now = std::clock();
-	if (placedAt + bombTime >= now) return true;
+	if (getElapsed() > bombTime) return true;
 	return false;
 }
 
 void Bomb::explode()
 {
-	explode(bombPosX, bombPosY, -1, 0, 0);
-	explode(bombPosX, bombPosY, 1, 0, 0);
-	explode(bombPosX, bombPosY, 0, -1, 0);
-	explode(bombPosX, bombPosY, 0, 1, 0);
+	int blockX = bombPosX - bombPosX % Globals::BLOCK_HEIGHT;
+	int blockY = bombPosY - bombPosY % Globals::BLOCK_WIDTH;
+	explode(blockX, blockY, -Globals::BLOCK_HEIGHT, 0, 0);
+	explode(blockX, blockY, 0, -Globals::BLOCK_WIDTH, 0);
+	explode(blockX, blockY, 0, Globals::BLOCK_WIDTH, 0);
+	explode(blockX, blockY, Globals::BLOCK_HEIGHT, 0, 0);
 }
 
 
@@ -85,17 +109,17 @@ void Bomb::explode(int x, int y, int dx, int dy, int step)
 	};
 	for (int i = 0; i < Arena::stones.size(); i++)
 	{
-		if (Arena::stones[i].collides(rect)) return;
+		if (Arena::stones[i].equals(rect)) return;
 	}
 	for (int i = 0; i < Arena::walls.size(); i++)
 	{
-		if (Arena::walls[i].collides(rect))
+		if (Arena::walls[i].equals(rect))
 		{
 			Arena::walls.remove(i);
-
+			return;
 		}
 	}
-	if (step < this->explosionArea)
+	if (step + 1 < this->explosionRadius)
 	{
 		explode(x + dx, y + dy, dx, dy, step + 1);
 	}
@@ -118,10 +142,10 @@ AnimatedSprite& Bomb::getSprite()
 
 void Bomb::setAnimations()
 {
-	sprite.setTexture("Resources/sprites.png", { 181, 93, 16, 16 });
-	sprite.addAnimationFrame("plase_1", 181, 93, 16, 16);
-	sprite.addAnimationFrame("phase_2", 211, 91, 16, 16);
-	sprite.addAnimationFrame("phase_3", 241, 91, 16, 16);
+	sprite.setTexture("Resources/sprites.png", { 181, 92, 17, 17 });
+	sprite.addAnimationFrame("phase_1", 181, 92, 17, 17);
+	sprite.addAnimationFrame("phase_2", 211, 92, 17, 17);
+	sprite.addAnimationFrame("phase_3", 241, 92, 17, 17);
 }
 
 Timestamp Bomb::getElapsed()

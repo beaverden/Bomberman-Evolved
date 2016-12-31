@@ -1,2 +1,4 @@
-﻿  Bomberman.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman\Debug\Bomberman.exe
+﻿  Arena.cpp
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\arena.cpp(34): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Bomberman.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman\Debug\Bomberman.exe
   Bomberman.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman\Debug\Bomberman.pdb (Partial PDB)

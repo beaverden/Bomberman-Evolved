@@ -25,7 +25,7 @@ void AnimatedSprite::setAnimation(std::string animationName, int step)
 	setCurrentSpriteRect();
 }
 
-void AnimatedSprite::nextStep()
+void AnimatedSprite::nextFrame()
 {
 	currentAnimationFrame++;
 	int maxSteps = animationFrames[currentAnimation].size();
@@ -39,7 +39,7 @@ void AnimatedSprite::playAnimation(std::string animationName)
 	{
 		if (animationName == currentAnimation)
 		{
-			nextStep();
+			nextFrame();
 		}
 		else
 		{

@@ -61,6 +61,7 @@ void Arena::generateRandomArena()
 		if (arr[rx][ry] == 0)
 		{
 			walls.push_back(Object({ rx * BLOCK_W, ry * BLOCK_H, BLOCK_W, BLOCK_H }));
+			arr[rx][ry] = -2;
 		}	
 	}
 }

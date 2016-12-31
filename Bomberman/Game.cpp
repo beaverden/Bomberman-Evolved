@@ -119,8 +119,19 @@ void Game::gameLoop()
 		{
 			player.idle();
 		}
-		
-
+		for (int i = 0; i < Arena::bombs.size(); i++)
+		{
+			if (Arena::bombs[i].exploded())
+			{
+				Arena::bombs[i].explode();
+				Arena::bombs.remove(i);
+			}
+			else
+			{
+				Arena::bombs[i].update();
+			}
+			
+		}
 		this->printLevel();
 		
 		this->capFPS(starting_tick);

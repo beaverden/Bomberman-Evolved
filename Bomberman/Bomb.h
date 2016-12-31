@@ -7,15 +7,15 @@
 #include "Arena.h"
 #include <chrono>
 #include <ctime>
-#define BOMB_HEIGHT 16
-#define BOMB_WIDTH 16
+#define BOMB_HEIGHT 17
+#define BOMB_WIDTH 17
 typedef std::clock_t Timestamp;
 
 class Bomb : public Object
 {
 public:
 	Bomb();
-	Bomb(int x, int y, int duration, int explosionArea = 2);
+	Bomb(int x, int y, int duration, int explosionRadius = 3);
 	~Bomb();
 
 	Timestamp getPlacedTime();
@@ -38,7 +38,7 @@ private:
 	AnimatedSprite sprite;
 	Timestamp placedAt;
 	int bombTime;
-	int explosionArea;
+	int explosionRadius;
 
 	int bombPosX;
 	int bombPosY;

@@ -40,7 +40,7 @@ public:
 		Moves the current animation to the next frame
 		If there are no more frames - resets the current frame to 0
 	*/
-	void nextStep();
+	void nextFrame();
 
 	/*
 		Sets the new animation or advances to the next frame

@@ -41,6 +41,14 @@ void Object::setBox(SDL_Rect newBox)
 	this->boundingBox = newBox;
 }
 
+bool Object::equals(SDL_Rect other)
+{
+	return (this->getObjectX() == other.x &&
+			this->getObjectY() == other.y &&
+			this->getObjectW() == other.w &&
+			this->getObjectH() == other.h);
+}
+
 bool Object::collides(SDL_Rect other)
 {
 	

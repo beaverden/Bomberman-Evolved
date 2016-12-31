@@ -18,6 +18,8 @@ public:
 
 	void setBox(SDL_Rect newBox);
 
+	bool equals(SDL_Rect other);
+
 	bool collides(SDL_Rect other);
 	bool collides(Object other);
 	bool collides(Vector <Object> objects);

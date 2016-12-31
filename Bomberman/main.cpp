@@ -18,6 +18,8 @@
 #include <cstdlib>
 #include "SDL_Image.h"
 #include "SDL_Mixer.h"
+#include <random>
+#include <time.h>
 
 using namespace std;
 

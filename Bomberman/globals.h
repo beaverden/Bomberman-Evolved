@@ -20,7 +20,7 @@ public:
 
 	static const int PLAYER_SPEED = 4;
 
-	static const int DEFAUT_BOMB_DURATION = 3000;
+	static const int DEFAUT_BOMB_DURATION = 1000;
 
 	static const int PLAYER_HEIGHT = 17;
 	static const int PLAYER_WIDTH = 15;
