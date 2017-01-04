@@ -3,10 +3,11 @@
 
 Player::Player() : Creature() {}
 
-Player::Player(int x, int y, int movementSpeed, AnimatedSprite sprite, int bombs = 0) 
+Player::Player(float x, float y, int movementSpeed, AnimatedSprite sprite, int bombs = 0)
 	: Creature(x, y, movementSpeed, sprite)
 {
 	this->bombs = bombs;
+	this->alive = true;
 }
 
 Player::~Player()

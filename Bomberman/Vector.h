@@ -85,8 +85,7 @@ public:
 
 		for (int i = position; i < array_size - 1; i++)
 		{
-			this->elements[i] = this->elements[i + 1];
-		}
+			this->elements[i] = this->elements[i + 1];		}
 		array_size--;
 		if (array_size > 0 && array_size < array_capacity / 4)
 		{

@@ -120,13 +120,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedSprite.h" />
+    <ClInclude Include="ArenaObjects.h" />
     <ClInclude Include="Bomb.h" />
+    <ClInclude Include="Box.h" />
     <ClInclude Include="ConsoleOutput.h" />
     <ClInclude Include="Creature.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Explosion.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="graphics.h" />
+    <ClInclude Include="DataStructures.h" />
     <ClInclude Include="KeyboardInput.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Map.h" />
@@ -141,10 +145,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp" />
+    <ClCompile Include="ArenaObjects.cpp" />
     <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="Box.cpp" />
     <ClCompile Include="ConsoleOutput.cpp" />
     <ClCompile Include="Creature.cpp" />
+    <ClCompile Include="CreatureDrawing.cpp" />
+    <ClCompile Include="CreatureMovement.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="KeyboardInput.cpp" />

@@ -1,5 +1,7 @@
 #include "Bomb.h"
-
+#include "Globals.h"
+#define BLOCK_H Globals::BLOCK_HEIGHT
+#define BLOCK_W Globals::BLOCK_WIDTH
 
 Bomb::Bomb() {}
 
@@ -7,8 +9,8 @@ Bomb::Bomb(int x, int y, int duration, int explosionRadius)
 {
 	Pair<int, int> blockPosition = getPlacementPosition(x, y);
 
-	blockPosition.first  += (Globals::BLOCK_HEIGHT - BOMB_HEIGHT) / 2;
-	blockPosition.second += (Globals::BLOCK_WIDTH  - BOMB_WIDTH) / 2;
+	blockPosition.first  += (BLOCK_H - BOMB_HEIGHT) / 2;
+	blockPosition.second += (BLOCK_W - BOMB_WIDTH) / 2;
 
 	this->bombPosX = blockPosition.first;
 	this->bombPosY = blockPosition.second;
@@ -84,46 +86,13 @@ void Bomb::update()
 
 bool Bomb::exploded()
 {
-	if (getElapsed() > bombTime) return true;
+	if (getElapsed() >= bombTime) return true;
 	return false;
 }
 
-void Bomb::explode()
-{
-	int blockX = bombPosX - bombPosX % Globals::BLOCK_HEIGHT;
-	int blockY = bombPosY - bombPosY % Globals::BLOCK_WIDTH;
-	explode(blockX, blockY, -Globals::BLOCK_HEIGHT, 0, 0);
-	explode(blockX, blockY, 0, -Globals::BLOCK_WIDTH, 0);
-	explode(blockX, blockY, 0, Globals::BLOCK_WIDTH, 0);
-	explode(blockX, blockY, Globals::BLOCK_HEIGHT, 0, 0);
-}
 
 
-void Bomb::explode(int x, int y, int dx, int dy, int step)
-{
-	SDL_Rect rect = {
-		x,
-		y,
-		Globals::BLOCK_WIDTH,
-		Globals::BLOCK_HEIGHT
-	};
-	for (int i = 0; i < Arena::stones.size(); i++)
-	{
-		if (Arena::stones[i].equals(rect)) return;
-	}
-	for (int i = 0; i < Arena::walls.size(); i++)
-	{
-		if (Arena::walls[i].equals(rect))
-		{
-			Arena::walls.remove(i);
-			return;
-		}
-	}
-	if (step + 1 < this->explosionRadius)
-	{
-		explode(x + dx, y + dy, dx, dy, step + 1);
-	}
-}
+
 
 int Bomb::getPosX()
 {
@@ -133,6 +102,11 @@ int Bomb::getPosX()
 int Bomb::getPosY()
 {
 	return this->bombPosY;
+}
+
+int Bomb::getExplosionRadius()
+{
+	return this->explosionRadius;
 }
 
 AnimatedSprite& Bomb::getSprite()
@@ -159,7 +133,7 @@ Pair<int, int> Bomb::getPlacementPosition(int x, int y)
 {
 	int pointX = x + (4 * Globals::PLAYER_HEIGHT) / 10;
 	int pointY = y + (5 * Globals::PLAYER_WIDTH) / 10;
-	pointX -= pointX % Globals::BLOCK_HEIGHT;
-	pointY -= pointY % Globals::BLOCK_WIDTH;
+	pointX -= pointX % BLOCK_H;
+	pointY -= pointY % BLOCK_W;
 	return Pair<int, int>(pointX, pointY);
 }

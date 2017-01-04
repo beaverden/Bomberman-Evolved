@@ -39,8 +39,22 @@ void Sprite::setRect(SDL_Rect newRect)
 	this->usedRect = newRect;
 }
 
-void Sprite::draw(int y, int x)
+void Sprite::draw(float y, float x)
 {
-	SDL_Rect destination = { x, y, usedRect.w, usedRect.h };
+	int intY = roundf(y);
+	int intX = roundf(x);
+
+	SDL_Rect destination = { intX, intY, usedRect.w, usedRect.h };
+	Graphics::addToRenderer(texture, &usedRect, &destination);
+}
+
+void Sprite::draw(float y, float x, float w, float h)
+{
+	int intY = roundf(y);
+	int intX = roundf(x);
+	int intW = roundf(w);
+	int intH = roundf(h);
+
+	SDL_Rect destination = { intX, intY, intW, intH };
 	Graphics::addToRenderer(texture, &usedRect, &destination);
 }

@@ -1,92 +1,121 @@
 #pragma once
 #ifndef CREATURE_H
 #define CREATURE_H
-
-#include "Object.h"
 #include "AnimatedSprite.h"
-#include "Arena.h"
+#include "Object.h"
+#include <ctime>
+
+typedef std::clock_t Timestamp;
 
 class Creature: public Object
 {
 public:
 	Creature();
-	Creature(int posX, int posY, int movementSpeed, AnimatedSprite sprite);
+	Creature(float posX, float posY, float movementSpeed, AnimatedSprite sprite);
 	~Creature();
 
+	void init();
 
-	/**
-		@param x coordinate to move
-		@param y coordinate to move
+	void update();
+
+
+	bool isAlive();
+	void setAlive(bool);
+
+
+	/*
+	Implemented in CreatureDrawing.cpp
+	Declares the function related to drawing the creature to the screen
+	setSprite()
+	getSprite()
+	canDraw()
+	draw()
 	*/
-	void setPosition(int x, int y);
 
-
-	/**
-		@param dy difference to be added to Y coordinate
-		@param dx difference to be added to X coordinate
+	/*
+	Sets the creature's sprite
+	@see Sprite::setTexture()
+	@param filepath on the machile (relative)
+	@param rect to crop from the texture
+	@param timeToUpdate of the sprite
 	*/
-	void moveBy(int dx, int dy);
-
-	/**
-		Checks if the creature can move in the given direction
-		@param dx direction of movement
-		@param dy direction of moment
-		@param stones vector containing stone objects
-		@param walls vector containing wall objects
-	*/
-	bool canMove(int dx, int dy);
-
-	/**
-		Sets the creature's sprite
-		More information on the subroutine functions
-		@param filepath on the machile (relative)
-		@param rect to crop from the texture
-	*/
-	void setSprite(const std::string &filepath, SDL_Rect rect);
-
+	void setSprite(const std::string &filepath, SDL_Rect rect, int timeToUpdate);
 
 	AnimatedSprite& getSprite();
 
-
-	/**
-		Draws the creature to the window in its posX, posY
-	*/
 	void draw();
-	void draw(int x, int y);
+	void draw(float x, float y);
+	void draw(float x, float y, float w, float h);
+	bool canDraw();
+	void deathAnimation();
+	void setDeathFrames(int frames);
 
-	int getPosX();
-	int getPosY();
 
-	bool isAlive();
-	void setDead();
-
-	void setSpeed(int speed);
-
-	bool moveLeft();
-	bool moveRight();
-	bool moveUp();
-	bool moveDown();
-
-	/**
-		Checks if the player has moved in the previous frame
-		Resets the hasMoved bool variable to false for each frame
-		@return the current hasMoved value
+	/*
+	Implemented in CreatureMovement.cpp
+	Declares all the positioning related functions
+	setSpeed()
+	setPosition()
+	canMove()
+	moveBy()
+	moveUp()
+	moveLeft()
+	moveDown()
+	moveRight()
+	idle()
+	moved()
 	*/
-	bool moved();
 
-	/**
-		Plays the idle animation in the last movement direction
+
+	/* 
+	Sets the object position though its setters
+	@param x coordinate of the object
+	@param y coordinate of the object 
 	*/
+	void setPosition(float x, float y);
+
+	/*
+	Sets the speed
+	@param speed of the object
+	*/
+	void setSpeed(float speed);
+
+	/* 
+	Verifies the movement in the specified direction
+	by checking if it collides with any objects on the arena
+	@param dx (change in the x coordinate)
+	@param dy (change in the y coordinate)
+	*/
+	bool canMove(float dx, float dy);
+	
+
+	/*
+	Sets the new position after moving in the [dx, dy] direction
+	@param dx (change in the x coordinate)
+	@param dy (change in the y coordinate)
+	*/
+	void moveBy(float dx, float dy);
+
+	void moveUp();
+	void moveLeft();
+	void moveDown();
+	void moveRight();
 	void idle();
 
-private:
-	int posX;
-	int posY;
-	int movementSpeed;
+	bool moved();
+
+protected:
+	float movementSpeed;
+
 	bool alive;
 	bool hasMoved;
 	int movementDirection;
 	AnimatedSprite sprite;
+
+	Timestamp diedAt;
+	int deathFrames;
+
+
 };
 
 #endif /* CREATURE_H */

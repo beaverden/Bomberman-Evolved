@@ -9,12 +9,11 @@
 #include "Pair.h"
 #include <stdexcept>
 
-class AnimatedSprite :
-	public Sprite
+class AnimatedSprite : public Sprite
 {
 public:
 	AnimatedSprite();
-	AnimatedSprite(const std::string &filepath, SDL_Rect rect);
+	AnimatedSprite(const std::string &filepath, SDL_Rect rect, int timeToUpdate);
 	~AnimatedSprite();
 
 	/**
@@ -35,6 +34,7 @@ public:
 	void setAnimation(std::string animationName, int frame = 0);
 
 
+	void setTimeToUpdate(int newTimeToUpdate);
 
 	/**
 		Moves the current animation to the next frame
@@ -42,10 +42,7 @@ public:
 	*/
 	void nextFrame();
 
-	/*
-		Sets the new animation or advances to the next frame
-		@param animationName to be played
-	*/
+
 	void playAnimation(std::string animationName);
 
 	/**
@@ -54,10 +51,14 @@ public:
 	*/
 	bool hasAnimation(std::string animationName);
 
-private:
+protected:
 	Map <std::string, Vector <SDL_Rect>> animationFrames;
 	std::string currentAnimation;
 	int currentAnimationFrame;
+
+	int timeToUpdate;
+	int lastUpdateTime;
+	int currentElapsedTime;
 
 	void setCurrentSpriteRect();
 };

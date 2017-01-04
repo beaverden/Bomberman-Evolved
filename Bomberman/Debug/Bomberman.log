@@ -1,4 +1,5 @@
-﻿  Arena.cpp
-c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\arena.cpp(34): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+﻿  Game.cpp
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\game.cpp(12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\game.cpp(79): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   Bomberman.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman\Debug\Bomberman.exe
   Bomberman.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman\Debug\Bomberman.pdb (Partial PDB)

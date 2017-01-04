@@ -25,7 +25,8 @@ public:
 		@param x position of the sprite top-left corner
 		@param y position of the sprite top-left corner
 	*/
-	void draw(int y, int x);
+	void draw(float y, float x);
+	void draw(float y, float x, float w, float h);
 
 protected:
 	SDL_Texture* texture;

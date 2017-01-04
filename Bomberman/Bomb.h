@@ -4,9 +4,8 @@
 
 #include "Object.h"
 #include "AnimatedSprite.h"
-#include "Arena.h"
-#include <chrono>
 #include <ctime>
+
 #define BOMB_HEIGHT 17
 #define BOMB_WIDTH 17
 typedef std::clock_t Timestamp;
@@ -28,10 +27,9 @@ public:
 
 	bool exploded();
 
-	void explode();
-
 	int getPosX();
 	int getPosY();
+	int getExplosionRadius();
 	AnimatedSprite& getSprite();
 
 private:

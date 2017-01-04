@@ -2,13 +2,11 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "AnimatedSprite.h"
+#include "KeyboardInput.h"
 #include "Arena.h"
 #include "Player.h"
-#include "Pair.h"
-#include "Queue.h"
 #include "graphics.h"
-#include "AnimatedSprite.h"
-#include "Vector.h"
 #include "Object.h"
 
 class Game
@@ -17,14 +15,11 @@ public:
 	Game();
 	~Game();
 
+private:
 	/**
 		Destroys all the objects and destoys graphics
 	*/
 	void endGame();
-
-
-	void loadTextures();
-	void setAnimations();
 
 
 	/**
@@ -38,16 +33,18 @@ public:
 	*/
 	void gameLoop();
 
+	void update();
+
+	void setupPlayer();
 
 
-private:
 
 	int height;
 	int width;
 
-	void capFPS(Uint32);
-
 	Player player;
+
+	void cap_FPS(const int FRAME_START);
 
 };
 

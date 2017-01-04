@@ -4,52 +4,69 @@
 
 Object::Object() {}
 
-Object::Object(SDL_Rect rect)
+Object::Object(Box rect)
 {
 	this->boundingBox = rect;
 }
 
 Object::~Object() {}
 
-int Object::getObjectX()
+float Object::getObjectX()
 {
 	return this->boundingBox.x;
 }
 
-int Object::getObjectY()
+float Object::getObjectY()
 {
 	return this->boundingBox.y;
 }
 
-int Object::getObjectW()
+float Object::getObjectW()
 {
 	return this->boundingBox.w;
 }
 
-int Object::getObjectH()
+float Object::getObjectH()
 {
 	return this->boundingBox.h;
 }
 
-SDL_Rect Object::getBox()
+void Object::setObjectX(float x)
+{
+	this->boundingBox.x = x;
+}
+
+void Object::setObjectY(float y)
+{
+	this->boundingBox.y = y;
+}
+
+void Object::setObjectW(float w)
+{
+	this->boundingBox.w = w;
+}
+
+void Object::setObjectH(float h)
+{
+	this->boundingBox.h = h;
+}
+
+Box Object::getBox()
 {
 	return this->boundingBox;
 }
 
-void Object::setBox(SDL_Rect newBox)
+void Object::setBox(Box newBox)
 {
 	this->boundingBox = newBox;
 }
 
-bool Object::equals(SDL_Rect other)
+bool Object::equals(Box other)
 {
-	return (this->getObjectX() == other.x &&
-			this->getObjectY() == other.y &&
-			this->getObjectW() == other.w &&
-			this->getObjectH() == other.h);
+	return (this->boundingBox == other);
 }
 
-bool Object::collides(SDL_Rect other)
+bool Object::collides(Box other)
 {
 	
 	int x1 = boundingBox.x;
@@ -64,20 +81,10 @@ bool Object::collides(SDL_Rect other)
 
 	return (in(x3, x1, x2) || in(x4, x1, x2)) &&
 		   (in(y3, y1, y2) || in(y4, y1, y2));
-	/*
-	SDL_Rect rect = this->boundingBox;
-	if (rect.x < other.x + other.w &&
-		rect.x + rect.w > other.x &&
-		rect.y < other.y + other.h &&
-		rect.h + rect.y > other.y) {
-		return true;
-	}
-	return false;
-	*/
 }
 
 
-bool Object::in(int x1, int x2, int x3)
+bool Object::in(float x1, float x2, float x3)
 {
 	return (x1 > x2 && x1 < x3);
 }

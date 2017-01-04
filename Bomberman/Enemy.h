@@ -2,7 +2,6 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include "Object.h"
 #include "Creature.h"
 
 class Enemy : public Creature
@@ -12,6 +11,9 @@ public:
 	Enemy(int posX, int posY, int movementSpeed, AnimatedSprite sprite);
 	~Enemy();
 
+	void setupAnimations();
+
+	void makeMove();
 };
 
 #endif /* ENEMY_H */

@@ -8,7 +8,7 @@ class Player : public Creature
 {
 public:
 	Player();
-	Player(int x, int y, int movementSpeed, AnimatedSprite sprite, int bombs);
+	Player(float x, float y, int movementSpeed, AnimatedSprite sprite, int bombs);
 	~Player();
 
 	int getBombs();

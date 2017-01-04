@@ -4,27 +4,36 @@
 
 #include "SDL.h"
 #include "Vector.h"
+#include "Box.h"
+
 class Object
 {
 public:
 	Object();
-	Object(SDL_Rect rect);
+	Object(Box rect);
 	~Object();
-	int getObjectX();
-	int getObjectY();
-	int getObjectW();
-	int getObjectH();
-	SDL_Rect getBox();
 
-	void setBox(SDL_Rect newBox);
+	float getObjectX();
+	float getObjectY();
+	float getObjectW();
+	float getObjectH();
 
-	bool equals(SDL_Rect other);
+	void setObjectX(float x);
+	void setObjectY(float y);
+	void setObjectW(float w);
+	void setObjectH(float h);
 
-	bool collides(SDL_Rect other);
+	Box getBox();
+
+	void setBox(Box newBox);
+
+	bool equals(Box other);
+
+	bool collides(Box other);
 	bool collides(Object other);
 	bool collides(Vector <Object> objects);
-private:
-	SDL_Rect boundingBox;
+protected:
+	Box boundingBox;
 
 	/*
 		Checks whether x1 is in (x2...x3)
@@ -32,7 +41,7 @@ private:
 		@param x2 interval start
 		@param x3 interval end
 	*/
-	bool in(int x1, int x2, int x3);
+	bool in(float x1, float x2, float x3);
 };
 
 
