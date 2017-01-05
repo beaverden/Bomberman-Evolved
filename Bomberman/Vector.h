@@ -17,12 +17,12 @@ public:
 
 	~Vector() {}
 
-	int size()
+	int size() const
 	{
 		return array_size;
 	}
 	
-	int capacity()
+	int capacity() const
 	{
 		return array_capacity;
 	}
@@ -112,6 +112,16 @@ public:
 			throw std::out_of_range("No such index");
 		}
 		
+		return this->elements[index];
+	}
+
+	T& operator[](const int index) const
+	{
+		if (index >= array_size || index < 0)
+		{
+			throw std::out_of_range("No such index");
+		}
+
 		return this->elements[index];
 	}
 

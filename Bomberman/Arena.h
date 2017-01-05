@@ -1,80 +1,99 @@
 #pragma once
 #ifndef ARENA_H
 #define ARENA_H
-
-#include "DataStructures.h"
+#pragma message("!!! Arena IN")
 #include "AnimatedSprite.h"
 #include "Globals.h"
 #include "Bomb.h"
-
+#include "Enemy.h"
+#include "ArenaObjects.h"
 
 #define MAP_HEIGHT	Globals::BLOCKS_X
 #define MAP_WIDTH	Globals::BLOCKS_Y
 #define BLOCK_W		Globals::BLOCK_WIDTH
 #define BLOCK_H     Globals::BLOCK_HEIGHT
 
+
+//Functions that create, place bombs: 
+//Implemented in ArenaBombs.cpp
+///	placeBomb();
+///	explodeBomb();
+
+//Function that generates and adds enemies: 
+//Implemented in ArenaEnemies.cpp
+/// addEnemy();
+
 class Arena
 {
 public:
-	static void init();
+	Arena();
+	~Arena();
+
+	void init();
 
 	/*
-		Generates unbreakable stone objects and randomly
-		generates breakable walls, adds them to the respective vectors
+	Generates unbreakable stone objects and randomly
+	generates breakable walls, adds them to the respective vectors
 	*/
-	static void generateRandomArena();
+	void generateRandomArena();
 	
-	/*
-		Creates a bomb and adds it to the bombs vector
-		@param x position of the bomb
-		@param y position of the bomb
-		@param duration of the bomb preparation period
-	*/
-	static void placeBomb(int x, int y, int duration);
-
 
 	/*
-		Propagates the explosion of the specified bomb recursively in 
-		all four direction and creates explosions in the reached places
-		Destroys walls
-		@param bomb to explode
+	Creates a bomb and adds it to the bombs vector
+	@param x position of the bomb
+	@param y position of the bomb
+	@param duration of the bomb preparation period
 	*/
-	static void explodeBomb(Bomb bomb);
-	static void explodeBomb(int x, int y, int dx, int dy, int step, int maxRadius);
+	void placeBomb(int x, int y, int duration);
 
 	/*
-		Creates a explosion and 
-		@param x position of the explosion
-		@param y position of the explosion
-		@param type of the explosion (0 for up, 1 for right, 2 for down, 3 for left and 4 for the central position)
-		@param whether the explosion is the last in the direction
+	Adds a random enemy to the arena in a free of other objects spot
 	*/
-	static void createExplosion(int x, int y, int type, bool last);
+	void addEnemy();
 
 	/*
-		Adds a random enemy to the arena in a free of other objects spot
+	Updates explosions and bombs. Explodes the bombs if the itme is up and removes the object. 
+	Removes the finished explosions
 	*/
-	static void addEnemy();
+	void update();
 
 	/*
-		Updates explosions and bombs. Explodes the bombs if the itme is up and removes the object. 
-		Removes the finished explosions
+	Draws the grass, walls, stones, bombs and explosions
 	*/
-	static void update();
+	void drawArena();
 
-	/*
-		Draws the grass, walls, stones, bombs and explosions
-	*/
-	static void drawArena();
+	const ArenaObjects& getObjects();
 
+	const Vector<Enemy>& getEnemies();
 
 private:
 	static Sprite grassSprite;
 	static Sprite wallSprite;
 	static Sprite stoneSprite;
 
-private:
-	Arena() {}
-};
+	ArenaObjects objects;
+	Vector <Enemy> enemies;
 
+	/*
+	Propagates the explosion of the specified bomb recursively in
+	all four direction and creates explosions in the reached places
+	Destroys walls
+	@param bomb to explode
+	*/
+	void explodeBomb(Bomb bomb);
+	void explodeBomb(int x, int y, int dx, int dy, int step, int maxRadius);
+
+
+	/*
+	Creates a explosion and
+	@param x position of the explosion
+	@param y position of the explosion
+	@param type of the explosion (0 for up, 1 for right, 2 for down, 3 for left and 4 for the central position)
+	@param whether the explosion is the last in the direction
+	*/
+	void createExplosion(int x, int y, int type, bool last);
+
+	void setupEnemy(int posX, int posY);
+};
+#pragma message("!!! Arena OUT")
 #endif /* ARENA_H */

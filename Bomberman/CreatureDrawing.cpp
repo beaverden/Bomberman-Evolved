@@ -15,7 +15,7 @@ AnimatedSprite& Creature::getSprite()
 }
 
 
-void Creature::draw()
+void Creature::draw() 
 {
 	if (this->canDraw())
 		sprite.draw(this->getObjectX(), this->getObjectY());
@@ -41,7 +41,7 @@ bool Creature::canDraw()
 	if (!this->alive)
 	{
 		Timestamp elapsed = std::clock() - this->diedAt;
-		if (elapsed >= Globals::DEATH_ANIMATION_TIME)
+		if (elapsed >= this->deathAnimationTime)
 			return false;
 		else return true;
 	}
@@ -52,7 +52,7 @@ bool Creature::canDraw()
 void Creature::deathAnimation()
 {
 	Timestamp elapsed = std::clock() - this->diedAt;
-	double percentage = elapsed / (double)Globals::DEATH_ANIMATION_TIME;
+	double percentage = elapsed / (double)this->deathAnimationTime;
 	for (int i = 1; i <= this->deathFrames; i++)
 	{
 		if (percentage <= i / (double)deathFrames)

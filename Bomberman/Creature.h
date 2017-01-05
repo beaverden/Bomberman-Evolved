@@ -1,9 +1,35 @@
 #pragma once
 #ifndef CREATURE_H
 #define CREATURE_H
+#pragma message("!!! Creature IN")
 #include "AnimatedSprite.h"
+#include "ArenaObjects.h"
 #include "Object.h"
 #include <ctime>
+
+
+// Functions that take care of drawing the creature
+// Implemented in CreatureDrawing.cpp
+/// setSprite()
+/// getSprite()
+/// canDraw()
+/// draw()
+
+
+
+// Functions that take care of creature movement and positioning
+// Implemented in CreatureMovement.cpp
+/// setSpeed()
+/// setPosition()
+/// canMove()
+/// moveBy()
+/// moveUp()
+/// moveLeft()
+/// moveDown()
+/// moveRight()
+/// idle()
+/// moved()
+
 
 typedef std::clock_t Timestamp;
 
@@ -16,21 +42,13 @@ public:
 
 	void init();
 
-	void update();
+	virtual void update(const ArenaObjects& objects);
 
 
 	bool isAlive();
 	void setAlive(bool);
 
-
-	/*
-	Implemented in CreatureDrawing.cpp
-	Declares the function related to drawing the creature to the screen
-	setSprite()
-	getSprite()
-	canDraw()
-	draw()
-	*/
+	void setDeathAnimationTime(int milliseconds);
 
 	/*
 	Sets the creature's sprite
@@ -49,22 +67,6 @@ public:
 	bool canDraw();
 	void deathAnimation();
 	void setDeathFrames(int frames);
-
-
-	/*
-	Implemented in CreatureMovement.cpp
-	Declares all the positioning related functions
-	setSpeed()
-	setPosition()
-	canMove()
-	moveBy()
-	moveUp()
-	moveLeft()
-	moveDown()
-	moveRight()
-	idle()
-	moved()
-	*/
 
 
 	/* 
@@ -86,7 +88,7 @@ public:
 	@param dx (change in the x coordinate)
 	@param dy (change in the y coordinate)
 	*/
-	bool canMove(float dx, float dy);
+	bool canMove(float dx, float dy, const ArenaObjects& objects);
 	
 
 	/*
@@ -96,10 +98,10 @@ public:
 	*/
 	void moveBy(float dx, float dy);
 
-	void moveUp();
-	void moveLeft();
-	void moveDown();
-	void moveRight();
+	void moveUp(const ArenaObjects& objects);
+	void moveLeft(const ArenaObjects& objects);
+	void moveDown(const ArenaObjects& objects);
+	void moveRight(const ArenaObjects& objects);
 	void idle();
 
 	bool moved();
@@ -114,8 +116,9 @@ protected:
 
 	Timestamp diedAt;
 	int deathFrames;
+	int deathAnimationTime;
 
 
 };
-
+#pragma message("!!! Creature OUT")
 #endif /* CREATURE_H */

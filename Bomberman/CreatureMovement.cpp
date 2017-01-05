@@ -17,10 +17,8 @@ void Creature::setSpeed(float speed)
 
 ///Verifies the movement in the specified direction
 ///by checking if it collides with any objects on the arena
-bool Creature::canMove(float dx, float dy)
+bool Creature::canMove(float dx, float dy, const ArenaObjects& objects)
 {
-	ArenaObjects objects = ArenaObjects::getInstance();
-
 	if (!this->isAlive()) return false;
 
 	float x = this->getObjectX() + dx;
@@ -49,11 +47,11 @@ void Creature::moveBy(float dx, float dy)
 
 ///Moves the player up, sets the direction and
 ///updates the variables related: hasMoved, movementDirection
-void Creature::moveUp()
+void Creature::moveUp(const ArenaObjects& objects)
 {
 	float dx = -this->movementSpeed;
 	float dy = 0;
-	if (canMove(dx, dy))
+	if (canMove(dx, dy, objects))
 	{
 		moveBy(dx, dy);
 		sprite.playAnimation("walk_up");
@@ -62,17 +60,16 @@ void Creature::moveUp()
 	}
 }
 
-
-///Moves the player left, sets the direction and
+///Moves the player right, sets the direction and
 ///updates the variables related: hasMoved, movementDirection
-void Creature::moveLeft()
+void Creature::moveRight(const ArenaObjects& objects)
 {
 	float dx = 0;
-	float dy = -this->movementSpeed;
-	if (canMove(dx, dy))
+	float dy = this->movementSpeed;
+	if (canMove(dx, dy, objects))
 	{
 		moveBy(dx, dy);
-		sprite.playAnimation("walk_left");
+		sprite.playAnimation("walk_right");
 		this->hasMoved = true;
 		this->movementDirection = 2;
 	}
@@ -81,11 +78,11 @@ void Creature::moveLeft()
 
 ///Moves the player down, sets the direction and
 ///updates the variables related: hasMoved, movementDirection
-void Creature::moveDown()
+void Creature::moveDown(const ArenaObjects& objects)
 {
 	float dx = this->movementSpeed;
 	float dy = 0;
-	if (canMove(dx, dy))
+	if (canMove(dx, dy, objects))
 	{
 		moveBy(dx, dy);
 		sprite.playAnimation("walk_down");
@@ -95,20 +92,21 @@ void Creature::moveDown()
 }
 
 
-///Moves the player right, sets the direction and
+///Moves the player left, sets the direction and
 ///updates the variables related: hasMoved, movementDirection
-void Creature::moveRight()
+void Creature::moveLeft(const ArenaObjects& objects)
 {
 	float dx = 0;
-	float dy = this->movementSpeed;
-	if (canMove(dx, dy))
+	float dy = -this->movementSpeed;
+	if (canMove(dx, dy, objects))
 	{
 		moveBy(dx, dy);
-		sprite.playAnimation("walk_right");
+		sprite.playAnimation("walk_left");
 		this->hasMoved = true;
 		this->movementDirection = 4;
 	}
 }
+
 
 
 ///Depending on the direction sets player to idle
@@ -117,9 +115,9 @@ void Creature::idle()
 	switch (this->movementDirection)
 	{
 	case 1: this->sprite.setAnimation("idle_up"); break;
-	case 2: this->sprite.setAnimation("idle_left"); break;
+	case 2: this->sprite.setAnimation("idle_right"); break;
 	case 3: this->sprite.setAnimation("idle_down"); break;
-	case 4: this->sprite.setAnimation("idle_right");  break;
+	case 4: this->sprite.setAnimation("idle_left");  break;
 	}
 }
 

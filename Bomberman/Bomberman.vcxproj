@@ -123,7 +123,6 @@
     <ClInclude Include="ArenaObjects.h" />
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="Box.h" />
-    <ClInclude Include="ConsoleOutput.h" />
     <ClInclude Include="Creature.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Explosion.h" />
@@ -145,10 +144,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp" />
+    <ClCompile Include="ArenaBombs.cpp" />
+    <ClCompile Include="ArenaEnemy.cpp" />
     <ClCompile Include="ArenaObjects.cpp" />
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="Box.cpp" />
-    <ClCompile Include="ConsoleOutput.cpp" />
     <ClCompile Include="Creature.cpp" />
     <ClCompile Include="CreatureDrawing.cpp" />
     <ClCompile Include="CreatureMovement.cpp" />
@@ -173,6 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Text.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

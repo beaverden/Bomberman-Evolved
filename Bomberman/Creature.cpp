@@ -1,6 +1,4 @@
 #include "Creature.h"
-#include "ArenaObjects.h"
-#include "Arena.h"
 #include <string>
 
 
@@ -33,7 +31,7 @@ void Creature::init()
 
 
 
-void Creature::update()
+void Creature::update(const ArenaObjects& objects)
 {
 	if (!alive && !canDraw()) return;
 	if (!alive && canDraw())
@@ -41,8 +39,6 @@ void Creature::update()
 		deathAnimation();
 		return;
 	}
-
-	ArenaObjects objects = ArenaObjects::getInstance();
 
 	for (int i = 0; i < objects.explosions.size(); i++)
 	{
@@ -68,4 +64,9 @@ void Creature::setAlive(bool alive)
 		this->diedAt = std::clock();
 	}
 	this->alive = alive;
+}
+
+void Creature::setDeathAnimationTime(int milliseconds)
+{
+	this->deathAnimationTime = milliseconds;
 }

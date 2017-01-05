@@ -7,7 +7,6 @@
 
 #include <stdio.h>
 #include <conio.h>
-#include "Arena.h"
 
 #include "Game.h"
 #include "SDL.h"

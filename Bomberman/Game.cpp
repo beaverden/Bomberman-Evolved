@@ -1,21 +1,18 @@
 #include "Game.h"
 #include <algorithm>
 
-const int FPS = 50;
-const int MAX_FRAME_TIME = 1000 / FPS;
 
 #define blockW Globals::BLOCK_WIDTH
 #define blockH Globals::BLOCK_HEIGHT
 
 Game::Game()
 {
-	srand(time(NULL));
+	srand(time(0));
 	Graphics::init();
-	Arena::init();
-	Arena::generateRandomArena();
-	Arena::addEnemy();
-	Arena::addEnemy();
-
+	arena.init();
+	arena.generateRandomArena();
+	arena.addEnemy();
+	arena.addEnemy();
 	this->setupPlayer();
 	this->gameLoop();
 }
@@ -32,7 +29,7 @@ void Game::printLevel()
 {
 	Graphics::clearRenderer();
 	
-	Arena::drawArena();
+	arena.drawArena();
 	player.draw();
 
 	Graphics::drawRenderer();
@@ -41,8 +38,6 @@ void Game::printLevel()
 void Game::gameLoop()
 {
 	KeyboardInput input;
-
-	
 
 	while (true)
 	{
@@ -56,23 +51,23 @@ void Game::gameLoop()
 		}
 		if (input.isKeyHeld(SDL_SCANCODE_D))
 		{
-			player.moveRight();
+			player.moveRight(arena.getObjects());
 		}
 		if (input.isKeyHeld(SDL_SCANCODE_A))
 		{
-			player.moveLeft();
+			player.moveLeft(arena.getObjects());
 		}
 		if (input.isKeyHeld(SDL_SCANCODE_W))
 		{
-			player.moveUp();
+			player.moveUp(arena.getObjects());
 		}
 		if (input.isKeyHeld(SDL_SCANCODE_S))
 		{
-			player.moveDown();
+			player.moveDown(arena.getObjects());
 		}
 		if (input.wasKeyPressed(SDL_SCANCODE_SPACE))
 		{
-			Arena::placeBomb(
+			arena.placeBomb(
 				player.getObjectX(),
 				player.getObjectY(),
 				Globals::DEFAUT_BOMB_DURATION
@@ -95,15 +90,16 @@ void Game::gameLoop()
 
 void Game::update()
 {
-	this->player.update();
-	Arena::update();
+	this->player.update(arena.getObjects(), arena.getEnemies());
+	arena.update();
 }
 
 void Game::setupPlayer()
 {
 	player.init();
-	player.setSpeed(2.2f);
+	player.setSpeed(PLAYER_SPEED);
 	player.setBox({ 30, 30, 17, 22 });
+	player.setDeathAnimationTime(500);
 
 	player.setSprite("Resources/second.png", { 125, 2, 15, 22 }, 170);
 	player.getSprite().addAnimationFrame("default", 125, 2, 15, 22);

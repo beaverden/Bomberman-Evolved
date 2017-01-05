@@ -8,6 +8,7 @@
 
 #define BOMB_HEIGHT 17
 #define BOMB_WIDTH 17
+
 typedef std::clock_t Timestamp;
 
 class Bomb : public Object

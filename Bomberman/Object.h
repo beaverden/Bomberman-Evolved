@@ -32,6 +32,7 @@ public:
 	bool collides(Box other);
 	bool collides(Object other);
 	bool collides(Vector <Object> objects);
+
 protected:
 	Box boundingBox;
 
