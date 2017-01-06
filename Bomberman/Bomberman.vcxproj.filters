@@ -34,6 +34,9 @@
     <Filter Include="Header Files\Graphics">
       <UniqueIdentifier>{90580edd-735e-4a7a-9a86-5f24e57a8dca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Images">
+      <UniqueIdentifier>{b3e10c6f-6101-49e9-a799-543d0463f3bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -102,6 +105,9 @@
     <ClInclude Include="Box.h">
       <Filter>Header Files\DataStructure</Filter>
     </ClInclude>
+    <ClInclude Include="Hud.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -160,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="ArenaEnemy.cpp">
       <Filter>Source Files\Arena</Filter>
+    </ClCompile>
+    <ClCompile Include="Hud.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,7 @@
 #include "Player.h"
 
 #include "graphics.h"
+#include "Hud.h"
 
 
 #define FPS 50
@@ -43,13 +44,20 @@ private:
 
 	void setupPlayer();
 
-
-	Player player;
-
-	Arena arena;
-
 	void cap_FPS(const int FRAME_START);
 
+	Player player;
+	
+	Arena arena;
+
+	Hud hud;
+
+	
+
+	Sprite menuLogo;
+
+	void prepareMenu();
+	void drawMenu();
 };
 
 #endif /* GAME_H */

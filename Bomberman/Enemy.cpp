@@ -21,7 +21,7 @@ void Enemy::setupAnimations()
 	this->setObjectH(Globals::BLOCK_HEIGHT);
 	this->setObjectW(Globals::BLOCK_WIDTH);
 
-	sprite.setTexture("Resources/sprites.png");
+	sprite.setTexture("Resources/Images/sprites.png");
 	sprite.addAnimationFrame("walk_down", 271, 123, 16, 16);
 	sprite.addAnimationFrame("walk_down", 271, 153, 16, 16);
 

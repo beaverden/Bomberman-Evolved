@@ -5,18 +5,21 @@
 #include "Creature.h"
 #include "Enemy.h"
 #define PLAYER_DEATH_ANIMATION_TIME 500;
+#define PLAYER_LIVES 3
+#define PLAYER_INVINCIBLE_MS 2000
 
 class Player : public Creature
 {
 public:
 	Player();
-	Player(float x, float y, float movementSpeed, AnimatedSprite sprite, int bombs);
+	Player(float x, float y, float movementSpeed, AnimatedSprite sprite);
 	~Player();
 
-	int getBombs();
+	int getLives();
 
-	void setBombs(int newBombs);
+	void setLives(int newLives);
 
+	void decreaseLives();
 	/*
 	Overriden virtual function from Creature
 	Also checks for collisions with enemies
@@ -27,7 +30,8 @@ public:
 private:
 	int posX;
 	int posY;
-	int bombs;
+	int lives;
+	int lastSetInvincible;
 };
 
 #endif /* PLAYER_H */

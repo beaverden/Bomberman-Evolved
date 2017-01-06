@@ -33,6 +33,7 @@ public:
 	*/
 	void setAnimation(std::string animationName, int frame = 0);
 
+	SDL_Rect getAnimationFrame(std::string animationName, int frame = 0);
 
 	void setTimeToUpdate(int newTimeToUpdate);
 

@@ -5,15 +5,23 @@
 #define blockW Globals::BLOCK_WIDTH
 #define blockH Globals::BLOCK_HEIGHT
 
+
 Game::Game()
 {
 	srand(time(0));
 	Graphics::init();
+	prepareMenu();
+
 	arena.init();
 	arena.generateRandomArena();
-	arena.addEnemy();
-	arena.addEnemy();
+	arena.addEnemies(7);
+
 	this->setupPlayer();
+
+	hud.setArena(&this->arena);
+	hud.setPlayer(&this->player);
+	hud.init();
+
 	this->gameLoop();
 }
 
@@ -29,8 +37,10 @@ void Game::printLevel()
 {
 	Graphics::clearRenderer();
 	
+	hud.draw();
 	arena.drawArena();
 	player.draw();
+	
 
 	Graphics::drawRenderer();
 }
@@ -80,7 +90,8 @@ void Game::gameLoop()
 
 
 		this->update();
-		this->printLevel();
+		//this->printLevel();
+		this->drawMenu();
 		
 		cap_FPS(FRAME_START);
 		
@@ -100,8 +111,9 @@ void Game::setupPlayer()
 	player.setSpeed(PLAYER_SPEED);
 	player.setBox({ 30, 30, 17, 22 });
 	player.setDeathAnimationTime(500);
+	player.setLives(3);
 
-	player.setSprite("Resources/second.png", { 125, 2, 15, 22 }, 170);
+	player.setSprite("Resources/Images/second.png", { 125, 2, 15, 22 }, 170);
 	player.getSprite().addAnimationFrame("default", 125, 2, 15, 22);
 	player.getSprite().setAnimation("default");
 
@@ -135,4 +147,46 @@ void Game::cap_FPS(const int FRAME_START)
 	const int ELAPSED = FRAME_END - FRAME_START;
 	if (ELAPSED < MAX_FRAME_TIME)
 		SDL_Delay(MAX_FRAME_TIME - ELAPSED);
+}
+
+void Game::prepareMenu()
+{
+	menuLogo.setTexture("Resources/Images/logo.png");
+	menuLogo.setRect({ 0, 0, 663, 286 });
+
+}
+
+void Game::drawMenu()
+{
+	Graphics::clearRenderer();
+
+	const int LOGO_WIDTH = std::max(Globals::SCREEN_WIDTH - 50, 500);
+	const int LOGO_HEIGHT = 200;
+	const int LOGO_X = 50;
+	const int LOGO_Y = (Globals::SCREEN_WIDTH - LOGO_WIDTH) / 2;
+	menuLogo.draw(
+		LOGO_X, 
+		LOGO_Y, 
+		LOGO_WIDTH, 
+		LOGO_HEIGHT
+	);
+
+	const int TEXT_WIDTH = 400;
+	const int TEXT_HEIGHT = 60;
+	const int TEXT_X = 320;
+	const int TEXT_Y = (Globals::SCREEN_WIDTH - TEXT_WIDTH) / 2;
+	SDL_Rect textRect = {
+		TEXT_Y,
+		TEXT_X,
+		TEXT_WIDTH,
+		TEXT_HEIGHT
+	};
+	Graphics::addText("PRESS ENTER TO PLAY",
+		"ARCADE30",
+		"Resources/Fonts/ARCADECLASSIC.TTF",
+		30,
+		{ 255, 255, 255 },
+		&textRect);
+
+	Graphics::drawRenderer();
 }

@@ -4,11 +4,13 @@
 SDL_Window* Graphics::window = nullptr;
 SDL_Renderer* Graphics::renderer = nullptr;
 Map <std::string, SDL_Surface*> Graphics::images;
+Map <std::string, TTF_Font*> Graphics::fonts;
 
 void Graphics::init()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
+	TTF_Init();
 
 	SDL_CreateWindowAndRenderer
 	(
@@ -30,6 +32,10 @@ void Graphics::destroy()
 	SDL_Quit();
 }
 
+void Graphics::setRendererDrawColor(SDL_Color color)
+{
+	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+}
 
 SDL_Surface* Graphics::loadImage(const std::string &filepath)
 {
@@ -70,4 +76,35 @@ void Graphics::clearRenderer() {
 
 SDL_Renderer* Graphics::getRenderer() {
 	return renderer;
+}
+
+void Graphics::addText( const std::string& text,
+						const std::string& fontName,
+						const std::string& fontPath,
+						const int fontSize,
+						SDL_Color color,
+						SDL_Rect* destinationRect)
+{
+	TTF_Font* font = loadFont(fontName, fontPath, fontSize);
+	SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), color);
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(getRenderer(), surface);
+	addToRenderer(texture, NULL, destinationRect);
+}
+
+TTF_Font* Graphics::loadFont(const std::string& fontName, const std::string& fontPath, const int fontSize)
+{
+	TTF_Font* font = fonts[fontName];
+	if (!font)
+	{
+		font = TTF_OpenFont(fontPath.c_str(), fontSize);
+		if (!font)
+		{
+			printf("Error loading %s font: %s", fontPath, SDL_GetError());
+		}
+		else
+		{
+			fonts[fontName] = font;
+		}
+	}
+	return font;
 }

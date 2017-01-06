@@ -19,13 +19,13 @@ Arena::~Arena() {}
 
 void Arena::init()
 {
-	grassSprite.setTexture("Resources/grass.png");
+	grassSprite.setTexture("Resources/Images/grass.png");
 	grassSprite.setRect({ 0, 0, Globals::BLOCK_WIDTH, Globals::BLOCK_HEIGHT });
 
-	stoneSprite.setTexture("Resources/stone.png");
+	stoneSprite.setTexture("Resources/Images/stone.png");
 	stoneSprite.setRect({ 0, 0, Globals::BLOCK_WIDTH, Globals::BLOCK_HEIGHT });
 
-	wallSprite.setTexture("Resources/wall.png");
+	wallSprite.setTexture("Resources/Images/wall.png");
 	wallSprite.setRect({ 0, 0, Globals::BLOCK_WIDTH, Globals::BLOCK_HEIGHT });
 }
 
@@ -64,8 +64,9 @@ void Arena::generateRandomArena()
 
 	for (int i = 0; i < Globals::RANDOM_BLOCKS; i++)
 	{
-		int rx = 1 + rand() % (MAP_WIDTH  - 2),
-			ry = 1 + rand() % (MAP_HEIGHT - 2);
+		int rx = 1 + rand() % (MAP_HEIGHT  - 2),
+			ry = 1 + rand() % (MAP_WIDTH   - 2);
+		if (rx < 3 && ry < 3) continue;
 		if (mapObjects[rx][ry] == 0)
 		{
 			objects.walls.push_back(

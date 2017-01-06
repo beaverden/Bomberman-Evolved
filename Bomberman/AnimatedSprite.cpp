@@ -28,6 +28,17 @@ void AnimatedSprite::setAnimation(std::string animationName, int step)
 	setCurrentSpriteRect();
 }
 
+SDL_Rect AnimatedSprite::getAnimationFrame(std::string animationName, int frame)
+{
+	if (hasAnimation(animationName))
+	{
+		if (animationFrames[animationName].size() > frame)
+		{
+			return animationFrames[animationName][frame];
+		}
+	}
+}
+
 void AnimatedSprite::setTimeToUpdate(int newTimeToUpdate)
 {
 	this->timeToUpdate = newTimeToUpdate;

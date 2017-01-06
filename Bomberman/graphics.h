@@ -4,6 +4,7 @@
 
 #include "SDL.h"
 #include "SDL_image.h"
+#include "SDL_ttf.h"
 #include "Map.h"
 #include "Vector.h"
 
@@ -24,6 +25,7 @@ public:
 	*/
 	static void destroy();
 
+	static void setRendererDrawColor(SDL_Color color);
 
 	/**
 	*	Adds a texture to the renderer
@@ -60,11 +62,27 @@ public:
 	*/
 	static SDL_Texture* loadTexture(const std::string &filepath);
 
+
+	static TTF_Font* loadFont(
+		const std::string& fontName, 
+		const std::string& fontPath, 
+		const int fontSize);
+
+	static void Graphics::addText(const std::string& text,
+		const std::string& fontName,
+		const std::string& fontPath,
+		const int fontSize,
+		SDL_Color color,
+		SDL_Rect* destinationRect);
+
+
 private:
 	static SDL_Window* window;
 	static SDL_Renderer* renderer;
 
 	static Map <std::string, SDL_Surface*> images;
+	static Map <std::string, TTF_Font*> fonts;
+
 
 };
 

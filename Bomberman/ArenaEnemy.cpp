@@ -63,3 +63,11 @@ void Arena::setupEnemy(int x, int y)
 
 	enemies.push_back(enemy);
 }
+
+void Arena::addEnemies(int enemies)
+{
+	for (int i = 0; i < enemies; i++)
+	{
+		this->addEnemy();
+	}
+}

@@ -1,27 +1,39 @@
 #include "Player.h"
 #include "ArenaObjects.h"
 
-Player::Player() : Creature() {}
+Player::Player() : Creature()
+{
+	this->lives = PLAYER_LIVES;
+	this->alive = true;
+	this->lastSetInvincible = 0;
+}
 
-Player::Player(float x, float y, float movementSpeed, AnimatedSprite sprite, int bombs = 0)
+Player::Player(float x, float y, float movementSpeed, AnimatedSprite sprite)
 	: Creature(x, y, movementSpeed, sprite)
 {
-	this->bombs = bombs;
-	this->alive = true;
+	Player();
 }
 
-Player::~Player()
+Player::~Player() {}
+
+int Player::getLives()
 {
+	return this->lives;
 }
 
-int Player::getBombs()
+void Player::setLives(int newLives)
 {
-	return this->bombs;
+	this->lives = newLives;
 }
 
-void Player::setBombs(int newBombs)
+void Player::decreaseLives()
 {
-	this->bombs = newBombs;
+	const int CURRENT_TIME_MS = SDL_GetTicks();
+	if (CURRENT_TIME_MS - lastSetInvincible > PLAYER_INVINCIBLE_MS)
+	{
+		this->lives--;
+		lastSetInvincible = CURRENT_TIME_MS;
+	}
 }
 
 void Player::update(const ArenaObjects& objects, 
@@ -38,6 +50,11 @@ void Player::update(const ArenaObjects& objects,
 	{
 		if (objects.explosions[i].collides(this->getBox()))
 		{
+			if (this->lives > 0)
+			{
+				decreaseLives();
+				return;
+			}
 			this->setAlive(false);
 			this->deathAnimation();
 			return;
@@ -48,6 +65,11 @@ void Player::update(const ArenaObjects& objects,
 	{
 		if (enemies[i].collides(this->getBox()))
 		{
+			if (this->lives > 0)
+			{
+				decreaseLives();
+				return;
+			}
 			this->setAlive(false);
 			this->deathAnimation();
 			return;

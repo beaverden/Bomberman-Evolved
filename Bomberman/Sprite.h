@@ -17,7 +17,11 @@ public:
 	void setTexture(const std::string &filepath);
 	void setTexture(const std::string &filepath, SDL_Rect rect);
 
+	SDL_Texture* getTexture();
+
 	void setRect(SDL_Rect rect);
+
+	SDL_Rect getRect();
 
 	/**
 		Draw the sprite on the graphics screen

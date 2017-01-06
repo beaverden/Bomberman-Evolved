@@ -1,6 +1,8 @@
 c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\vc140.pdb
 c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\vc140.idb
 c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\animatedsprite.obj
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\arenabombs.obj
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\arenaenemy.obj
 c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\arenaobjects.obj
 c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\bomb.obj
 c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\box.obj
@@ -11,6 +13,7 @@ c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\e
 c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\explosion.obj
 c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\game.obj
 c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\graphics.obj
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\hud.obj
 c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\keyboardinput.obj
 c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\main.obj
 c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\debug\object.obj

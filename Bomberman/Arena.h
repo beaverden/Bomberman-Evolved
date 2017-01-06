@@ -50,6 +50,7 @@ public:
 	Adds a random enemy to the arena in a free of other objects spot
 	*/
 	void addEnemy();
+	void addEnemies(int enemy);
 
 	/*
 	Updates explosions and bombs. Explodes the bombs if the itme is up and removes the object. 

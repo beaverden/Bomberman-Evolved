@@ -1,2 +1,24 @@
-﻿  Bomberman.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman\Debug\Bomberman.exe
+﻿  Hud.cpp
+  !!! Arena IN
+  !!! Enemy IN
+  !!! Creature IN
+  !!! Creature OUT
+  !!! Enemy OUT
+  !!! Arena OUT
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\hud.cpp(67): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\hud.cpp(80): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\hud.cpp(80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\hud.cpp(96): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+  Game.cpp
+  !!! Arena IN
+  !!! Enemy IN
+  !!! Creature IN
+  !!! Creature OUT
+  !!! Enemy OUT
+  !!! Arena OUT
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\game.cpp(11): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\game.cpp(84): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\game.cpp(172): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+  Generating Code...
+  Bomberman.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman\Debug\Bomberman.exe
   Bomberman.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman\Debug\Bomberman.pdb (Partial PDB)

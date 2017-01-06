@@ -34,9 +34,19 @@ void Sprite::setTexture(const std::string &filepath, SDL_Rect rect)
 	this->usedRect = rect;
 }
 
+SDL_Texture* Sprite::getTexture()
+{
+	return this->texture;
+}
+
 void Sprite::setRect(SDL_Rect newRect)
 {
 	this->usedRect = newRect;
+}
+
+SDL_Rect Sprite::getRect()
+{
+	return this->usedRect;
 }
 
 void Sprite::draw(float y, float x)
