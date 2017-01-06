@@ -17,46 +17,35 @@
 #define MAX_FRAME_TIME 1000 / FPS
 #define PLAYER_SPEED 2.2f
 
+class SceneController;
+
 class Game
 {
 public:
 	Game();
 	~Game();
 
-private:
-	/**
-		Destroys all the objects and destoys graphics
+	/*
+	Destroys all the objects and destoys graphics
 	*/
 	void endGame();
 
-
-	/**
-		Prints the game maze
-		Prints only the changes between the new maze and old maze
-	*/
-	void printLevel();
 
 	/**
 		Main action loop, listens for events, updates the map and redraws it
 	*/
 	void gameLoop();
 
-	void update();
-
-	void setupPlayer();
-
 	void cap_FPS(const int FRAME_START);
 
 	Player player;
+	void setupPlayer();
+
 	
 	Arena arena;
-
 	Hud hud;
-
-	Sprite menuLogo;
-
-	void prepareMenu();
-	void drawMenu();
+	SceneController* scenes;
+	bool ended;
 };
 
 #endif /* GAME_H */

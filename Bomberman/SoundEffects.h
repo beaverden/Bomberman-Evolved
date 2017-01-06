@@ -19,6 +19,10 @@ public:
 
 	static void playMusic(std::string musicPath);
 
+	static void turnVolumeOff();
+
+	static void turnVolumeOn();
+
 private:
 	static Map <std::string, Mix_Chunk*> effects;
 	static Map <std::string, Mix_Music*> music;

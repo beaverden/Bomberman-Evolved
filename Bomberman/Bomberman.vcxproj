@@ -139,6 +139,7 @@
     <ClInclude Include="Pair.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Queue.h" />
+    <ClInclude Include="SceneController.h" />
     <ClInclude Include="SoundEffects.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Stack.h" />
@@ -167,6 +168,7 @@
     </ClCompile>
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SceneController.cpp" />
     <ClCompile Include="SoundEffects.cpp" />
     <ClCompile Include="Sprite.cpp" />
   </ItemGroup>

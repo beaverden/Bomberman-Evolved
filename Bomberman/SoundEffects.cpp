@@ -44,7 +44,9 @@ void SoundEffects::init()
 
 void SoundEffects::destroy()
 {
-
+	effects.clear();
+	music.clear();
+	commonEffects.clear();
 }
 
 Mix_Chunk* SoundEffects::loadChunk(std::string chunkPath)
@@ -93,4 +95,16 @@ void SoundEffects::playEffect(std::string name)
 void SoundEffects::playMusic(std::string musicPath)
 {
 	Mix_PlayMusic(loadMusic(musicPath), -1);
+}
+
+void SoundEffects::turnVolumeOff()
+{
+	Mix_Volume(-1, 0);
+	Mix_VolumeMusic(0);
+}
+
+void SoundEffects::turnVolumeOn()
+{
+	Mix_Volume(-1, MIX_MAX_VOLUME / 8);
+	Mix_VolumeMusic(MIX_MAX_VOLUME / 10);
 }

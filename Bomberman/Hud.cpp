@@ -153,3 +153,8 @@ void Hud::drawTimer()
 	);
 
 }
+
+void Hud::resetTimer()
+{
+	this->startTime = SDL_GetTicks();
+}

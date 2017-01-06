@@ -52,6 +52,7 @@ SDL_Surface* Graphics::loadImage(const std::string &filepath)
 			images[filepath] = loaded;
 		}
 	}
+	
 	return loaded;
 }
 
@@ -88,7 +89,10 @@ void Graphics::addText( const std::string& text,
 	TTF_Font* font = loadFont(fontName, fontPath, fontSize);
 	SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), color);
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(getRenderer(), surface);
+	
 	addToRenderer(texture, NULL, destinationRect);
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(texture);
 }
 
 TTF_Font* Graphics::loadFont(const std::string& fontName, const std::string& fontPath, const int fontSize)

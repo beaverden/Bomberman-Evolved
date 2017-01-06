@@ -27,6 +27,8 @@ public:
 	void setPlayer(Player* player);
 
 	void draw();
+
+	void resetTimer();
 private:
 	Arena* arena;
 	Player* player;

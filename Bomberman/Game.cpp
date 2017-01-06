@@ -1,6 +1,6 @@
 #include "Game.h"
 #include <algorithm>
-
+#include "SceneController.h"
 
 #define blockW Globals::BLOCK_WIDTH
 #define blockH Globals::BLOCK_HEIGHT
@@ -10,7 +10,6 @@ Game::Game()
 {
 	srand(time(0));
 	Graphics::init();
-	prepareMenu();
 
 	arena.init();
 	arena.generateRandomArena();
@@ -24,6 +23,12 @@ Game::Game()
 
 	SoundEffects::init();
 
+	scenes = new SceneController;
+	scenes->setGame(this);
+	scenes->prepareScenes();
+	scenes->setCurrentScene("menu");
+
+	this->ended = false;
 	this->gameLoop();
 }
 
@@ -33,79 +38,26 @@ Game::~Game() {}
 void Game::endGame()
 {
 	Graphics::destroy();
-}
-
-void Game::printLevel()
-{
-	Graphics::clearRenderer();
-	
-	hud.draw();
-	arena.drawArena();
-	player.draw();
-	
-
-	Graphics::drawRenderer();
+	SoundEffects::destroy();
 }
 
 void Game::gameLoop()
 {
 	KeyboardInput input;
-	SoundEffects::playMusic("Resources/Sounds/Stage_theme.mp3");
-
-	while (true)
+	
+	while (!ended)
 	{
 		const int FRAME_START = SDL_GetTicks();
 		input.newFrame();
 		input.processInputs();
-		
-		if (input.wasKeyPressed(SDL_SCANCODE_ESCAPE))
-		{
-			break;
-		}
-		if (input.isKeyHeld(SDL_SCANCODE_D))
-		{
-			player.moveRight(arena.getObjects());
-		}
-		if (input.isKeyHeld(SDL_SCANCODE_A))
-		{
-			player.moveLeft(arena.getObjects());
-		}
-		if (input.isKeyHeld(SDL_SCANCODE_W))
-		{
-			player.moveUp(arena.getObjects());
-		}
-		if (input.isKeyHeld(SDL_SCANCODE_S))
-		{
-			player.moveDown(arena.getObjects());
-		}
-		if (input.wasKeyPressed(SDL_SCANCODE_SPACE))
-		{
-			arena.placeBomb(
-				player.getObjectX(),
-				player.getObjectY(),
-				Globals::DEFAUT_BOMB_DURATION
-			);
-		}
-		if (!player.moved())
-		{
-			player.idle();
-		}
 
+		scenes->handleInputs(input);
+		scenes->updateCurrentScene();
+		scenes->drawCurrentScene();
 
-		this->update();
-		this->printLevel();
-		//this->drawMenu();
-		
 		cap_FPS(FRAME_START);
-		
 	}
 	endGame();
-}
-
-void Game::update()
-{
-	this->player.update(arena.getObjects(), arena.getEnemies());
-	arena.update();
 }
 
 void Game::setupPlayer()
@@ -150,46 +102,4 @@ void Game::cap_FPS(const int FRAME_START)
 	const int ELAPSED = FRAME_END - FRAME_START;
 	if (ELAPSED < MAX_FRAME_TIME)
 		SDL_Delay(MAX_FRAME_TIME - ELAPSED);
-}
-
-void Game::prepareMenu()
-{
-	menuLogo.setTexture("Resources/Images/logo.png");
-	menuLogo.setRect({ 0, 0, 663, 286 });
-
-}
-
-void Game::drawMenu()
-{
-	Graphics::clearRenderer();
-
-	const int LOGO_WIDTH = std::max(Globals::SCREEN_WIDTH - 50, 500);
-	const int LOGO_HEIGHT = 200;
-	const int LOGO_X = 50;
-	const int LOGO_Y = (Globals::SCREEN_WIDTH - LOGO_WIDTH) / 2;
-	menuLogo.draw(
-		LOGO_X, 
-		LOGO_Y, 
-		LOGO_WIDTH, 
-		LOGO_HEIGHT
-	);
-
-	const int TEXT_WIDTH = 400;
-	const int TEXT_HEIGHT = 60;
-	const int TEXT_X = 320;
-	const int TEXT_Y = (Globals::SCREEN_WIDTH - TEXT_WIDTH) / 2;
-	SDL_Rect textRect = {
-		TEXT_Y,
-		TEXT_X,
-		TEXT_WIDTH,
-		TEXT_HEIGHT
-	};
-	Graphics::addText("PRESS ENTER TO PLAY",
-		"ARCADE30",
-		"Resources/Fonts/ARCADECLASSIC.TTF",
-		30,
-		{ 255, 255, 255 },
-		&textRect);
-
-	Graphics::drawRenderer();
 }
