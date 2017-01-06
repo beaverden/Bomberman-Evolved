@@ -10,6 +10,7 @@
 
 #include "graphics.h"
 #include "Hud.h"
+#include "SoundEffects.h"
 
 
 #define FPS 50
@@ -51,8 +52,6 @@ private:
 	Arena arena;
 
 	Hud hud;
-
-	
 
 	Sprite menuLogo;
 

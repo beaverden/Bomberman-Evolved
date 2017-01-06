@@ -1,4 +1,7 @@
 #pragma once
+#ifndef HUD_H
+#define HUD_H
+
 #include "Arena.h"
 #include "Player.h"
 #include "graphics.h"
@@ -39,4 +42,6 @@ private:
 	void drawEnemyCount();
 	void drawTimer();
 };
+
+#endif /* HUD_H */
 

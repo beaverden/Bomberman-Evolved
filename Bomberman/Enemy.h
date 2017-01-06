@@ -15,6 +15,8 @@ public:
 	Enemy(float posX, float posY, float movementSpeed, AnimatedSprite sprite);
 	~Enemy();
 
+	void update(const ArenaObjects& objects);
+
 	void setupAnimations();
 
 	void makeMove(const ArenaObjects& objects);

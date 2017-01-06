@@ -22,6 +22,8 @@ Game::Game()
 	hud.setPlayer(&this->player);
 	hud.init();
 
+	SoundEffects::init();
+
 	this->gameLoop();
 }
 
@@ -48,6 +50,7 @@ void Game::printLevel()
 void Game::gameLoop()
 {
 	KeyboardInput input;
+	SoundEffects::playMusic("Resources/Sounds/Stage_theme.mp3");
 
 	while (true)
 	{
@@ -90,8 +93,8 @@ void Game::gameLoop()
 
 
 		this->update();
-		//this->printLevel();
-		this->drawMenu();
+		this->printLevel();
+		//this->drawMenu();
 		
 		cap_FPS(FRAME_START);
 		

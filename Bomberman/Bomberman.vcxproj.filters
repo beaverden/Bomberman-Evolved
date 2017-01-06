@@ -105,8 +105,11 @@
     <ClInclude Include="Box.h">
       <Filter>Header Files\DataStructure</Filter>
     </ClInclude>
-    <ClInclude Include="Hud.h">
+    <ClInclude Include="SoundEffects.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Hud.h">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -167,8 +170,11 @@
     <ClCompile Include="ArenaEnemy.cpp">
       <Filter>Source Files\Arena</Filter>
     </ClCompile>
-    <ClCompile Include="Hud.cpp">
+    <ClCompile Include="SoundEffects.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Hud.cpp">
+      <Filter>Source Files\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

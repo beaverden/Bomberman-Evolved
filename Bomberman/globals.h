@@ -10,7 +10,7 @@ public:
 	static const int ARENA_WIDTH = 630;
 	static const int ARENA_HEIGHT = 570;
 
-	static const int RANDOM_BLOCKS = 80;
+	static const int RANDOM_BLOCKS = 95;
 
 	static const int BLOCK_HEIGHT = 30;
 	static const int BLOCK_WIDTH = 30;

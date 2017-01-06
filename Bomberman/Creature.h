@@ -1,10 +1,11 @@
 #pragma once
 #ifndef CREATURE_H
 #define CREATURE_H
-#pragma message("!!! Creature IN")
+
 #include "AnimatedSprite.h"
 #include "ArenaObjects.h"
 #include "Object.h"
+#include "SoundEffects.h"
 #include <ctime>
 
 
@@ -120,5 +121,4 @@ protected:
 
 
 };
-#pragma message("!!! Creature OUT")
 #endif /* CREATURE_H */

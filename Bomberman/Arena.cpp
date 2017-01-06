@@ -99,6 +99,7 @@ void Arena::update()
 	{
 		if (objects.bombs[i].exploded())
 		{
+			SoundEffects::playEffect("Boom");
 			explodeBomb(objects.bombs[i]);
 			objects.bombs.remove(i);
 		}

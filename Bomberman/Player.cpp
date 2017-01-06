@@ -32,6 +32,7 @@ void Player::decreaseLives()
 	if (CURRENT_TIME_MS - lastSetInvincible > PLAYER_INVINCIBLE_MS)
 	{
 		this->lives--;
+		SoundEffects::playEffect("GotHit");
 		lastSetInvincible = CURRENT_TIME_MS;
 	}
 }

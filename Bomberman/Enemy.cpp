@@ -90,3 +90,24 @@ void Enemy::move(int direction, const ArenaObjects& objects)
 	case 4: moveLeft(objects); break;
 	}
 }
+
+void Enemy::update(const ArenaObjects& objects)
+{
+	if (!alive && !canDraw()) return;
+	if (!alive && canDraw())
+	{
+		deathAnimation();
+		return;
+	}
+
+	for (int i = 0; i < objects.explosions.size(); i++)
+	{
+		if (objects.explosions[i].collides(this->getBox()))
+		{
+			SoundEffects::playEffect("Happy");
+			this->setAlive(false);
+			this->deathAnimation();
+			break;
+		}
+	}
+}
