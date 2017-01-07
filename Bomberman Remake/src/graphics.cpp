@@ -1,5 +1,5 @@
 #include "graphics.h"
-#include "Globals.h"
+#include "globals.h"
 
 SDL_Window* Graphics::window = nullptr;
 SDL_Renderer* Graphics::renderer = nullptr;

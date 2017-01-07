@@ -1,5 +1,5 @@
 #include "Bomb.h"
-#include "Globals.h"
+#include "globals.h"
 #define BLOCK_H Globals::BLOCK_HEIGHT
 #define BLOCK_W Globals::BLOCK_WIDTH
 
