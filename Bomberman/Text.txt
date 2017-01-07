@@ -1,5 +1,0 @@
-TODO:
-1. Add music
-2. Add textures
-3. Add AI
-4. Make bombs and explosion animations
