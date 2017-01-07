@@ -21,6 +21,8 @@ void Graphics::init()
 		&renderer
 	);
 	SDL_SetWindowTitle(window, "Bomberman Remake");
+	SDL_Surface* icon = IMG_Load("resources/Images/icon.png");
+	SDL_SetWindowIcon(window, icon);
 }
 
 
