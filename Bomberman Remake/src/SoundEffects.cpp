@@ -19,29 +19,29 @@ void SoundEffects::init()
 	Mix_Volume(-1, MIX_MAX_VOLUME/8);
 	Mix_VolumeMusic(MIX_MAX_VOLUME / 10);
 
-	Mix_Chunk* happy1 = loadChunk("Resources/Sounds/Happy1.wav");
+	Mix_Chunk* happy1 = loadChunk("resources/Sounds/Happy1.wav");
 	Mix_VolumeChunk(happy1, MIX_MAX_VOLUME / 5);
 	commonEffects["Happy"].push_back(happy1);
-	Mix_Chunk* happy2 = loadChunk("Resources/Sounds/Happy2.wav");
+	Mix_Chunk* happy2 = loadChunk("resources/Sounds/Happy2.wav");
 	Mix_VolumeChunk(happy2, MIX_MAX_VOLUME / 5);
 	commonEffects["Happy"].push_back(happy2);
-	Mix_Chunk* happy3 = loadChunk("Resources/Sounds/Happy3.wav");
+	Mix_Chunk* happy3 = loadChunk("resources/Sounds/Happy3.wav");
 	Mix_VolumeChunk(happy3, MIX_MAX_VOLUME / 5);
 	commonEffects["Happy"].push_back(happy3);
 
 
-	commonEffects["Boom"].push_back(loadChunk("Resources/Sounds/boom1.wav"));
-	commonEffects["Boom"].push_back(loadChunk("Resources/Sounds/boom2.wav"));
+	commonEffects["Boom"].push_back(loadChunk("resources/Sounds/boom1.wav"));
+	commonEffects["Boom"].push_back(loadChunk("resources/Sounds/boom2.wav"));
 
-	commonEffects["EnemyHit"].push_back(loadChunk("Resources/Sounds/Enemy_hit1.wav"));
-	commonEffects["EnemyHit"].push_back(loadChunk("Resources/Sounds/Enemy_hit2.wav"));
+	commonEffects["EnemyHit"].push_back(loadChunk("resources/Sounds/Enemy_hit1.wav"));
+	commonEffects["EnemyHit"].push_back(loadChunk("resources/Sounds/Enemy_hit2.wav"));
 
-	commonEffects["GotHit"].push_back(loadChunk("Resources/Sounds/Got_hit1.wav"));
-	commonEffects["GotHit"].push_back(loadChunk("Resources/Sounds/Got_hit2.wav"));
+	commonEffects["GotHit"].push_back(loadChunk("resources/Sounds/Got_hit1.wav"));
+	commonEffects["GotHit"].push_back(loadChunk("resources/Sounds/Got_hit2.wav"));
 
-	commonEffects["Win"].push_back(loadChunk("Resources/Sounds/I_won.wav"));
-	commonEffects["TimeOver"].push_back(loadChunk("Resources/Sounds/Time_over.wav"));
-	commonEffects["Lost"].push_back(loadChunk("Resources/Sounds/I_lost.wav"));
+	commonEffects["Win"].push_back(loadChunk("resources/Sounds/I_won.wav"));
+	commonEffects["TimeOver"].push_back(loadChunk("resources/Sounds/Time_over.wav"));
+	commonEffects["Lost"].push_back(loadChunk("resources/Sounds/I_lost.wav"));
 }
 
 void SoundEffects::destroy()

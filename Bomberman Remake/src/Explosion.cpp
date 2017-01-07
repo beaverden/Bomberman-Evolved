@@ -59,7 +59,7 @@ Timestamp Explosion::getElapsed()
 
 void Explosion::setAnimations(int type, bool last)
 {
-	sprite.setTexture("Resources/Images/explosions.png");
+	sprite.setTexture("resources/Images/explosions.png");
 	int yPosition;
 	if (type == 0 || type == 2) //up or down
 	{

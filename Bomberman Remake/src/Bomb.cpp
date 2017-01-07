@@ -113,7 +113,7 @@ AnimatedSprite& Bomb::getSprite()
 
 void Bomb::setAnimations()
 {
-	sprite.setTexture("Resources/Images/sprites.png", { 181, 92, 17, 17 });
+	sprite.setTexture("resources/Images/sprites.png", { 181, 92, 17, 17 });
 	sprite.addAnimationFrame("phase_1", 181, 92, 17, 17);
 	sprite.addAnimationFrame("phase_2", 211, 92, 17, 17);
 	sprite.addAnimationFrame("phase_3", 241, 92, 17, 17);

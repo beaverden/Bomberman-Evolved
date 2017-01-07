@@ -19,13 +19,13 @@ Arena::~Arena() {}
 
 void Arena::init()
 {
-	grassSprite.setTexture("Resources/Images/grass.png");
+	grassSprite.setTexture("resources/Images/grass.png");
 	grassSprite.setRect({ 0, 0, Globals::BLOCK_WIDTH, Globals::BLOCK_HEIGHT });
 
-	stoneSprite.setTexture("Resources/Images/stone.png");
+	stoneSprite.setTexture("resources/Images/stone.png");
 	stoneSprite.setRect({ 0, 0, Globals::BLOCK_WIDTH, Globals::BLOCK_HEIGHT });
 
-	wallSprite.setTexture("Resources/Images/wall.png");
+	wallSprite.setTexture("resources/Images/wall.png");
 	wallSprite.setRect({ 0, 0, Globals::BLOCK_WIDTH, Globals::BLOCK_HEIGHT });
 }
 

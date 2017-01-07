@@ -12,7 +12,7 @@ void SceneController::prepareScenes()
 
 void SceneController::prepareMenu()
 {
-	menuBg.setTexture("Resources/Images/menu.jpg");
+	menuBg.setTexture("resources/Images/menu.jpg");
 	menuBg.setRect({ 254, 0, 636, 636 });
 
 	currentMenuOptionSelected = 0;
@@ -31,12 +31,12 @@ void SceneController::setCurrentScene(std::string name)
 	if (name == "menu")
 	{
 		
-		SoundEffects::playMusic("Resources/Sounds/Menu_theme.mp3");
+		SoundEffects::playMusic("resources/Sounds/Menu_theme.mp3");
 	}
 	else if (name == "stage")
 	{
 		game->resetGame();
-		SoundEffects::playMusic("Resources/Sounds/Stage_theme.mp3");
+		SoundEffects::playMusic("resources/Sounds/Stage_theme.mp3");
 	}
 }
 
@@ -219,7 +219,7 @@ void SceneController::drawMenu()
 	};
 
 	const std::string fontName = "hellovetica";
-	const std::string fontPath = "Resources/Fonts/hellovetica.ttf";
+	const std::string fontPath = "resources/Fonts/hellovetica.ttf";
 
 	SDL_Color color = (currentMenuOptionSelected == 0) ? YELLOW : WHITE;
 	Graphics::addText(

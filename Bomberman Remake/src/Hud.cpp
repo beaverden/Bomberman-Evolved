@@ -22,7 +22,7 @@ void Hud::init()
 		defaultRectPlayer
 	);
 
-	heart.setTexture("Resources/Images/heart.png");
+	heart.setTexture("resources/Images/heart.png");
 	heart.setRect({ 0, 0, 170, 150 });
 
 	this->startTime = SDL_GetTicks();
@@ -113,7 +113,7 @@ void Hud::drawEnemyCount()
 	Graphics::addText(
 		enemies,
 		"OpenSans20",
-		"Resources/Fonts/OpenSans-Regular.ttf",
+		"resources/Fonts/OpenSans-Regular.ttf",
 		FONT_SIZE,
 		{ 255, 255, 255 },
 		&text
@@ -147,7 +147,7 @@ void Hud::drawTimer()
 	Graphics::addText(
 		time,
 		"OpenSans20",
-		"Resources/Fonts/OpenSans-Regular.ttf",
+		"resources/Fonts/OpenSans-Regular.ttf",
 		FONT_SIZE,
 		{ 255, 255, 255 },
 		&text

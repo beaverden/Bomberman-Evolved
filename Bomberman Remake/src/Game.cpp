@@ -83,7 +83,7 @@ void Game::setupPlayer()
 	player.setDeathAnimationTime(500);
 	player.setLives(3);
 
-	player.setSprite("Resources/Images/second.png", { 125, 2, 15, 22 }, 170);
+	player.setSprite("resources/Images/second.png", { 125, 2, 15, 22 }, 170);
 	player.getSprite().addAnimationFrame("default", 125, 2, 15, 22);
 	player.getSprite().setAnimation("default");
 
