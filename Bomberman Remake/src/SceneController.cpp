@@ -54,6 +54,11 @@ void SceneController::handleInputs(KeyboardInput& input)
 
 void SceneController::handleMenuInputs(KeyboardInput& input)
 {
+	if (input.closePressed)
+	{
+		game->ended = true;
+		return;
+	}
 	if (input.wasKeyPressed(SDL_SCANCODE_DOWN) ||
 		input.wasKeyPressed(SDL_SCANCODE_S))
 	{
@@ -95,6 +100,11 @@ void SceneController::handleMenuInputs(KeyboardInput& input)
 
 void SceneController::handleStageInputs(KeyboardInput& input)
 {
+	if (input.closePressed)
+	{
+		game->ended = true;
+		return;
+	}
 	if (input.wasKeyPressed(SDL_SCANCODE_ESCAPE))
 	{
 		this->setCurrentScene("menu");

@@ -15,6 +15,7 @@ void KeyboardInput::newFrame()
 {
 	pressedKeys.clear();
 	releasedKeys.clear();
+	this->closePressed = false;
 }
 
 void KeyboardInput::keyUpEvent(const SDL_Event &event)
@@ -49,6 +50,10 @@ void KeyboardInput::processInputs()
 {
 	while (SDL_PollEvent(&event))
 	{
+		if (event.type == SDL_QUIT)
+		{
+			this->closePressed = true;
+		}
 		if (event.type == SDL_KEYDOWN)
 		{
 			if (event.key.repeat == 0)
@@ -65,4 +70,9 @@ void KeyboardInput::processInputs()
 			return;
 		}
 	}
+}
+
+SDL_Event& KeyboardInput::getEvent()
+{
+	return this->event;
 }

@@ -22,6 +22,9 @@ public:
 
 	void processInputs();
 
+	SDL_Event& getEvent();
+
+	bool closePressed;
 private:
 	Map <SDL_Scancode, bool> heldKeys;
 	Map <SDL_Scancode, bool> releasedKeys;
