@@ -1,0 +1,9 @@
+﻿  SceneController.cpp
+  !!! Arena IN
+  !!! Enemy IN
+  !!! Enemy OUT
+  !!! Arena OUT
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\scenecontroller.cpp(128): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\scenecontroller.cpp(180): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+  Bomberman.vcxproj -> C:\Users\Denis\Documents\Visual Studio 2015\Projects\Bomberman\Debug\Bomberman.exe
+  Bomberman.vcxproj -> C:\Users\Denis\Documents\Visual Studio 2015\Projects\Bomberman\Debug\Bomberman.pdb (Partial PDB)

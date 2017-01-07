@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\</FILEPATH>
+      <FILENAME>graphics.cpp</FILENAME>
+      <LINE>48</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>6284</DEFECTCODE>
+    <DESCRIPTION>Object passed as _Param_(2) when a string is required in call to 'printf' Actual type: 'const class std::basic_string&lt;char,struct std::char_traits&lt;char&gt;,class std::allocator&lt;char&gt; &gt;'.</DESCRIPTION>
+    <FUNCTION>Graphics::loadImage</FUNCTION>
+    <DECORATED>?loadImage@Graphics@@SAPAUSDL_Surface@@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
+    <FUNCLINE>40</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\</FILEPATH>
+      <FILENAME>graphics.cpp</FILENAME>
+      <LINE>102</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>6284</DEFECTCODE>
+    <DESCRIPTION>Object passed as _Param_(2) when a string is required in call to 'printf' Actual type: 'const class std::basic_string&lt;char,struct std::char_traits&lt;char&gt;,class std::allocator&lt;char&gt; &gt;'.</DESCRIPTION>
+    <FUNCTION>Graphics::loadFont</FUNCTION>
+    <DECORATED>?loadFont@Graphics@@SAPAU_TTF_Font@@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0H@Z</DECORATED>
+    <FUNCLINE>94</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

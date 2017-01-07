@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\</FILEPATH>
+      <FILENAME>explosion.cpp</FILENAME>
+      <LINE>84</LINE>
+      <COLUMN>25</COLUMN>
+    </SFA>
+    <DEFECTCODE>6001</DEFECTCODE>
+    <DESCRIPTION>Using uninitialized memory 'yPosition'.</DESCRIPTION>
+    <FUNCTION>Explosion::setAnimations</FUNCTION>
+    <DECORATED>?setAnimations@Explosion@@AAEXH_N@Z</DECORATED>
+    <FUNCLINE>60</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\</FILEPATH>
+        <FILENAME>explosion.cpp</FILENAME>
+        <LINE>62</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\</FILEPATH>
+        <FILENAME>explosion.cpp</FILENAME>
+        <LINE>62</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\</FILEPATH>
+        <FILENAME>explosion.cpp</FILENAME>
+        <LINE>62</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\</FILEPATH>
+        <FILENAME>explosion.cpp</FILENAME>
+        <LINE>63</LINE>
+        <COLUMN>5</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'yPosition' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\</FILEPATH>
+        <FILENAME>explosion.cpp</FILENAME>
+        <LINE>64</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'type==0||type==2' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\</FILEPATH>
+        <FILENAME>explosion.cpp</FILENAME>
+        <LINE>72</LINE>
+        <COLUMN>20</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'type==1||type==3' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\</FILEPATH>
+        <FILENAME>explosion.cpp</FILENAME>
+        <LINE>80</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'type==4' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\</FILEPATH>
+        <FILENAME>explosion.cpp</FILENAME>
+        <LINE>84</LINE>
+        <COLUMN>26</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\denis\documents\visual studio 2015\projects\bomberman\bomberman\</FILEPATH>
+        <FILENAME>explosion.cpp</FILENAME>
+        <LINE>84</LINE>
+        <COLUMN>25</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'yPosition' is used, but may not have been initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+</DEFECTS>
