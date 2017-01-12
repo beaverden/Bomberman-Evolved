@@ -14,9 +14,9 @@
 
 
 
-#define FPS 50
+#define FPS 40
 #define MAX_FRAME_TIME 1000 / FPS
-#define PLAYER_SPEED 2.2f
+#define PLAYER_SPEED 3.0f
 
 class SceneController;
 
@@ -32,6 +32,8 @@ public:
 	void endGame();
 
 	void resetGame();
+
+	void setDifficulty(int difficulty);
 
 	/**
 		Main action loop, listens for events, updates the map and redraws it
@@ -50,6 +52,8 @@ public:
 	Hud hud;
 	SceneController* scenes;
 	bool ended;
+
+	int difficulty;
 };
 
 #endif /* GAME_H */

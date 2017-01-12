@@ -8,6 +8,7 @@ void SceneController::prepareScenes()
 {
 	prepareMenu();
 	prepareStage();
+	prepareDifficultyMenu();
 }
 
 void SceneController::prepareMenu()
@@ -19,10 +20,16 @@ void SceneController::prepareMenu()
 	soundEffects = 1;
 }
 
-void SceneController::prepareStage()
-{
+void SceneController::prepareStage() {}
 
+void SceneController::prepareDifficultyMenu() 
+{
+	currentDifficultyOptionSelected = 0;
+	difficultySelectLogo.setTexture("resources/Images/difficulty_select.jpg");
+	difficultySelectLogo.setRect({ 0, 0, 800, 800 });
 }
+
+
 
 void SceneController::setCurrentScene(std::string name)
 {
@@ -38,7 +45,10 @@ void SceneController::setCurrentScene(std::string name)
 		game->resetGame();
 		SoundEffects::playMusic("resources/Sounds/Stage_theme.mp3");
 	}
+	else if (name == "difficulty_select") {}
 }
+
+
 
 void SceneController::handleInputs(KeyboardInput& input)
 {
@@ -49,6 +59,10 @@ void SceneController::handleInputs(KeyboardInput& input)
 	else if (currentScene == "stage")
 	{
 		handleStageInputs(input);
+	}
+	else if (currentScene == "difficulty_select")
+	{
+		handleDifficultyMenuInputs(input);
 	}
 }
 
@@ -79,7 +93,8 @@ void SceneController::handleMenuInputs(KeyboardInput& input)
 	{
 		if (currentMenuOptionSelected == 0)
 		{
-			setCurrentScene("stage");
+			//setCurrentScene("stage");
+			setCurrentScene("difficulty_select");
 			return;
 		}
 		else if (currentMenuOptionSelected == 1)
@@ -140,6 +155,54 @@ void SceneController::handleStageInputs(KeyboardInput& input)
 	}
 }
 
+void SceneController::handleDifficultyMenuInputs(KeyboardInput& input)
+{
+	if (input.closePressed)
+	{
+		game->ended = true;
+		return;
+	}
+	if (input.wasKeyPressed(SDL_SCANCODE_DOWN) ||
+		input.wasKeyPressed(SDL_SCANCODE_S))
+	{
+		if (currentDifficultyOptionSelected == MAX_DIFICULTY_OPTIONS - 1)
+			currentDifficultyOptionSelected = 0;
+		else
+			currentDifficultyOptionSelected++;
+	}
+	else if (input.wasKeyPressed(SDL_SCANCODE_UP) ||
+		input.wasKeyPressed(SDL_SCANCODE_W))
+	{
+		if (currentDifficultyOptionSelected == 0)
+			currentDifficultyOptionSelected = MAX_DIFICULTY_OPTIONS - 1;
+		else
+			currentDifficultyOptionSelected--;
+	}
+	else if (input.wasKeyPressed(SDL_SCANCODE_RETURN))
+	{
+		if (currentDifficultyOptionSelected == 0)
+		{
+			game->setDifficulty(0);
+			setCurrentScene("stage");
+			return;
+		}
+		else if (currentDifficultyOptionSelected == 1)
+		{
+			game->setDifficulty(1);
+			setCurrentScene("stage");
+			return;
+		}
+		else if (currentDifficultyOptionSelected == 2)
+		{
+			game->setDifficulty(2);
+			setCurrentScene("stage");
+			return;
+		}
+	}
+}
+
+
+
 void SceneController::updateCurrentScene()
 {
 	if (currentScene == "menu")
@@ -149,6 +212,10 @@ void SceneController::updateCurrentScene()
 	else if (currentScene == "stage")
 	{
 		updateStage();
+	}
+	else if (currentScene == "difficulty_select")
+	{
+		updateDifficultyMenu();
 	}
 }
 
@@ -180,11 +247,10 @@ void SceneController::updateStage()
 	game->arena.update();
 }
 
-void SceneController::updateMenu()
-{
+void SceneController::updateMenu() {}
 
-	
-}
+void SceneController::updateDifficultyMenu() {}
+
 
 void SceneController::drawCurrentScene()
 {
@@ -195,6 +261,10 @@ void SceneController::drawCurrentScene()
 	else if (currentScene == "stage")
 	{
 		drawStage();
+	}
+	else if (currentScene == "difficulty_select")
+	{
+		drawDifficultyMenu();
 	}
 }
 
@@ -282,6 +352,75 @@ void SceneController::drawStage()
 
 	Graphics::drawRenderer();
 }
+
+void SceneController::drawDifficultyMenu()
+{
+	Graphics::clearRenderer();
+	Graphics::setRendererDrawColor({ 255, 255, 255 });
+
+	difficultySelectLogo.draw(
+		(float)50,
+		(float)0,
+		(float)Globals::SCREEN_WIDTH - 100,
+		(float)Globals::SCREEN_HEIGHT - 100
+	);
+
+	const SDL_Color BLACK = { 0, 0, 0 };
+	const SDL_Color RED = { 255, 0, 0 };
+
+	const int TEXT_WIDTH = 170;
+	const int TEXT_HEIGHT = 25;
+	const int TEXT_GAP = 60;
+	const int BLOCK_HEIGHT = TEXT_HEIGHT * 3 + TEXT_GAP * 2;
+
+	const int TEXT_X = Globals::SCREEN_WIDTH - TEXT_WIDTH - 20;
+	const int TEXT_Y = Globals::SCREEN_HEIGHT - BLOCK_HEIGHT - 20;
+	SDL_Rect textRect = {
+		TEXT_Y,
+		TEXT_X,
+		TEXT_WIDTH,
+		TEXT_HEIGHT
+	};
+
+	const std::string fontName = "hellovetica";
+	const std::string fontPath = "resources/Fonts/hellovetica.ttf";
+
+	SDL_Color color;
+	color = (currentDifficultyOptionSelected == 0) ? RED : BLACK;
+	Graphics::addText(
+		"EASY",
+		fontName,
+		fontPath,
+		30,
+		color,
+		&textRect
+	);
+
+	textRect.y += TEXT_GAP;
+	color = (currentDifficultyOptionSelected == 1) ? RED : BLACK;
+	Graphics::addText(
+		"MEDIUM",
+		fontName,
+		fontPath,
+		30,
+		color,
+		&textRect
+	);
+
+	textRect.y += TEXT_GAP;
+	color = (currentDifficultyOptionSelected == 2) ? RED : BLACK;
+	Graphics::addText(
+		"HARD",
+		fontName,
+		fontPath,
+		30,
+		color,
+		&textRect
+	);
+
+	Graphics::drawRenderer();
+}
+
 
 void SceneController::setGame(Game* _game)
 {

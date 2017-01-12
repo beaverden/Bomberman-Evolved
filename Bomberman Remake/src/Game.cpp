@@ -9,10 +9,10 @@ Game::Game()
 {
 	srand(time(0));
 	Graphics::init();
+	this->setDifficulty(0);
 
 	arena.init();
-	arena.generateRandomArena();
-	arena.addEnemies(7);
+	arena.setup(this->difficulty);
 
 	this->setupPlayer();
 
@@ -44,8 +44,7 @@ void Game::endGame()
 void Game::resetGame()
 {
 	arena.clear();
-	arena.generateRandomArena();
-	arena.addEnemies(7);
+	arena.setup(this->difficulty);
 
 	this->setupPlayer();
 
@@ -54,6 +53,11 @@ void Game::resetGame()
 	this->ended = false;
 
 	hud.resetTimer();
+}
+
+void Game::setDifficulty(int difficulty)
+{
+	this->difficulty = difficulty;
 }
 
 void Game::gameLoop()

@@ -27,6 +27,8 @@ void Arena::init()
 
 	wallSprite.setTexture("resources/Images/wall.png");
 	wallSprite.setRect({ 0, 0, Globals::BLOCK_WIDTH, Globals::BLOCK_HEIGHT });
+
+	this->enemySpeed = 1.f;
 }
 
 void Arena::clear()
@@ -36,6 +38,27 @@ void Arena::clear()
 	objects.stones.clear();
 	objects.walls.clear();
 	enemies.clear();
+	this->enemySpeed = 1.f;
+}
+
+void Arena::setup(int difficulty)
+{
+	this->generateRandomArena();
+	if (difficulty == 0)
+	{
+		this->enemySpeed = 1.0f;
+		addEnemies(7);
+	}
+	else if (difficulty == 1)
+	{
+		this->enemySpeed = 1.5f;
+		addEnemies(11);
+	}
+	else if (difficulty == 2)
+	{
+		this->enemySpeed = 2.0f;
+		addEnemies(11);
+	}
 }
 
 void Arena::generateRandomArena()

@@ -17,6 +17,10 @@ Bomb::Bomb(int x, int y, int duration, int explosionRadius)
 	this->bombTime = duration;
 	this->explosionRadius = explosionRadius;
 	this->placedAt = std::clock();
+	this->setObjectH(Globals::BLOCK_HEIGHT);
+	this->setObjectW(Globals::BLOCK_WIDTH);
+	this->setObjectX(this->bombPosX);
+	this->setObjectY(this->bombPosY);
 	setAnimations();
 }
 

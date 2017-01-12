@@ -35,15 +35,19 @@ private:
 	
 	void prepareMenu();
 	void prepareStage();
+	void prepareDifficultyMenu();
 
 	void handleMenuInputs(KeyboardInput& input);
 	void handleStageInputs(KeyboardInput& input);
+	void handleDifficultyMenuInputs(KeyboardInput& input);
 
 	void updateMenu();
 	void updateStage();
+	void updateDifficultyMenu();
 
 	void drawMenu();
 	void drawStage();
+	void drawDifficultyMenu();
 
 	//Menu requisites
 	Sprite menuLogo;
@@ -51,5 +55,10 @@ private:
 	int currentMenuOptionSelected;
 	const int MAX_MENU_OPTIONS = 3;
 	int soundEffects;
+
+	//Difficulty requisites
+	Sprite difficultySelectLogo;
+	int currentDifficultyOptionSelected;
+	const int MAX_DIFICULTY_OPTIONS = 3;
 };
 

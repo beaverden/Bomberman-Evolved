@@ -1,44 +1,11 @@
-﻿  Sprite.cpp
-  SoundEffects.cpp
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\soundeffects.cpp(62): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\soundeffects.cpp(80): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-  SceneController.cpp
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\scenecontroller.cpp(135): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\scenecontroller.cpp(210): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-  Player.cpp
-  Object.cpp
-  main.cpp
-  KeyboardInput.cpp
-  Hud.cpp
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\hud.cpp(68): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\hud.cpp(81): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\hud.cpp(81): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\hud.cpp(97): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-  graphics.cpp
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\graphics.cpp(50): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'const std::string'
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\graphics.cpp(108): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'const std::string'
-  Game.cpp
+﻿  Game.cpp
 c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\game.cpp(10): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Explosion.cpp
-  Enemy.cpp
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\enemy.cpp(21): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\enemy.cpp(22): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-  CreatureMovement.cpp
-  CreatureDrawing.cpp
-  Creature.cpp
-  Box.cpp
-  Bomb.cpp
-  ArenaObjects.cpp
-  ArenaEnemy.cpp
-  ArenaBombs.cpp
   Generating Code...
   Compiling...
-  Arena.cpp
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\arena.cpp(98): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\arena.cpp(152): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\arena.cpp(173): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  AnimatedSprite.cpp
+  main.cpp
+  SceneController.cpp
+c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\scenecontroller.cpp(150): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\scenecontroller.cpp(280): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
   Generating Code...
-c:\users\denis\documents\visual studio 2015\projects\bomberman remake\bomberman remake\src\animatedsprite.cpp(40): warning C4715: 'AnimatedSprite::getAnimationFrame': not all control paths return a value
   Bomberman Remake.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman Remake\Debug\Bomberman Remake.exe
   Bomberman Remake.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman Remake\Debug\Bomberman Remake.pdb (Partial PDB)

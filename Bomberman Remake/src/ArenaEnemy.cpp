@@ -49,7 +49,7 @@ void Arena::setupEnemy(int x, int y)
 {
 	Enemy enemy;
 	enemy.init();
-	enemy.setSpeed(ENEMY_SPEED);
+	enemy.setSpeed(this->enemySpeed);
 	enemy.setBox({
 		(float)x,
 		(float)y,

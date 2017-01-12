@@ -33,6 +33,8 @@ public:
 
 	void clear();
 
+	void setup(int difficulty);
+
 	/*
 	Generates unbreakable stone objects and randomly
 	generates breakable walls, adds them to the respective vectors
@@ -76,6 +78,7 @@ private:
 
 	ArenaObjects objects;
 	Vector <Enemy> enemies;
+	float enemySpeed;
 
 	/*
 	Propagates the explosion of the specified bomb recursively in

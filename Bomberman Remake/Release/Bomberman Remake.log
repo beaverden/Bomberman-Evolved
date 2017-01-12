@@ -1,46 +1,12 @@
-﻿  AnimatedSprite.cpp
-  Arena.cpp
-src\Arena.cpp(98): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-src\Arena.cpp(152): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-src\Arena.cpp(173): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  ArenaBombs.cpp
-  ArenaEnemy.cpp
-  ArenaObjects.cpp
-  Bomb.cpp
-  Box.cpp
-  Creature.cpp
-  CreatureDrawing.cpp
-  CreatureMovement.cpp
-  Enemy.cpp
-src\Enemy.cpp(21): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-src\Enemy.cpp(22): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-  Explosion.cpp
-  Game.cpp
+﻿  Game.cpp
 src\Game.cpp(10): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  graphics.cpp
-src\graphics.cpp(50): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'const std::string'
-src\graphics.cpp(108): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'const std::string'
-  Hud.cpp
-src\Hud.cpp(68): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-src\Hud.cpp(81): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-src\Hud.cpp(81): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-src\Hud.cpp(97): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-  KeyboardInput.cpp
-  main.cpp
-  Object.cpp
-  Player.cpp
   SceneController.cpp
-src\SceneController.cpp(135): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-src\SceneController.cpp(210): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-  Compiling...
-  SoundEffects.cpp
-src\SoundEffects.cpp(62): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-src\SoundEffects.cpp(80): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-  Sprite.cpp
+src\SceneController.cpp(149): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+src\SceneController.cpp(275): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
   Generating code
-  42 of 547 functions ( 7.7%) were compiled, the rest were copied from previous compilation.
+  26 of 551 functions ( 4.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     15 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  Bomberman Remake.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman Remake\Release\Bomberman Remake.exe
-  Bomberman Remake.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman Remake\Release\Bomberman Remake.pdb (Full PDB)
+  Bomberman Remake.vcxproj -> C:\Users\Denis\Documents\Visual Studio 2015\Projects\Bomberman Remake\Release\Bomberman Remake.exe
+  Bomberman Remake.vcxproj -> C:\Users\Denis\Documents\Visual Studio 2015\Projects\Bomberman Remake\Release\Bomberman Remake.pdb (Full PDB)
