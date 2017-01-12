@@ -144,9 +144,9 @@ void SceneController::handleStageInputs(KeyboardInput& input)
 	if (input.wasKeyPressed(SDL_SCANCODE_SPACE))
 	{
 		game->arena.placeBomb(
-			game->player.getObjectX(),
-			game->player.getObjectY(),
-			Globals::DEFAUT_BOMB_DURATION
+			(int)game->player.getObjectX(),
+			(int)game->player.getObjectY(),
+			(int)Globals::DEFAUT_BOMB_DURATION
 		);
 	}
 	if (!game->player.moved())
@@ -273,10 +273,10 @@ void SceneController::drawMenu()
 	Graphics::clearRenderer();
 
 	menuBg.draw(
-		0,
-		0,
-		Globals::SCREEN_WIDTH,
-		Globals::SCREEN_HEIGHT
+		(float)0,
+		(float)0,
+		(float)Globals::SCREEN_WIDTH,
+		(float)Globals::SCREEN_HEIGHT
 	);
 
 	const int LOGO_WIDTH = std::max(Globals::SCREEN_WIDTH - 50, 500);

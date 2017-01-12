@@ -1,12 +1,8 @@
-﻿  Game.cpp
-src\Game.cpp(10): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  SceneController.cpp
-src\SceneController.cpp(149): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-src\SceneController.cpp(275): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+﻿  SceneController.cpp
   Generating code
-  26 of 551 functions ( 4.7%) were compiled, the rest were copied from previous compilation.
+  0 of 553 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    15 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  Bomberman Remake.vcxproj -> C:\Users\Denis\Documents\Visual Studio 2015\Projects\Bomberman Remake\Release\Bomberman Remake.exe
-  Bomberman Remake.vcxproj -> C:\Users\Denis\Documents\Visual Studio 2015\Projects\Bomberman Remake\Release\Bomberman Remake.pdb (Full PDB)
+  Bomberman Remake.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman Remake\Release\Bomberman Remake.exe
+  Bomberman Remake.vcxproj -> C:\Users\Denis\documents\visual studio 2015\Projects\Bomberman Remake\Release\Bomberman Remake.pdb (Full PDB)
